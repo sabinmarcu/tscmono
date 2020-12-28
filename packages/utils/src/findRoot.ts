@@ -12,10 +12,14 @@ import gitFinder from './package/git';
 export const findRoot: WorkspaceRootFinder['find'] = async (
   cwd = __dirname,
 ) => {
-  const root = await workspaceFinder()
-    .catch(() => gitFinder(cwd));
-  process.env.TSMONO_ROOT = root;
-  return root;
+  if (!process.env.TSCMONO_ROOT) {
+    const root = await workspaceFinder()
+      .catch(() => gitFinder(cwd));
+
+    process.env.TSCMONO_ROOT = root;
+  }
+
+  return process.env.TSCMONO_ROOT;
 };
 
 if (require.main?.filename === __filename) {

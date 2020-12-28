@@ -38,7 +38,7 @@ const runParser = async (
  * @param rootDir Path to be used when parsing
  * @category Yarn Workspace Parsers
  */
-const parseWorkspaces = async (
+export const parseWorkspaces = async (
   rootDir?: string,
 ): Promise<WorkspaceConfig> => {
   const pwd = rootDir || await findRoot();
@@ -50,8 +50,7 @@ const parseWorkspaces = async (
   return runParser(parsers[yarnVersion], pwd);
 };
 
-module.exports = parseWorkspaces;
-module.exports.parse = parseWorkspaces;
+export default parseWorkspaces;
 
 if (require.main?.filename === __filename) {
   // eslint-disable-next-line no-console

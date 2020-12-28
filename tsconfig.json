@@ -1,3 +1,11 @@
 {
-  "extends": "./tsconfig.base.json"
+  "extends": "./tsconfig.base.json",
+  "files": [],
+  "include": [],
+  "composite": true,
+  "references": [
+    {
+      "path": "/Users/sabinmarcu/Projects/monorepo-tsconfig/packages"
+    }
+  ]
 }

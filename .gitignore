@@ -114,3 +114,6 @@ dist
 
 # Build Stuff
 docs
+
+# TSConfig Stuff
+tsconfig.json

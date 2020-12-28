@@ -8,5 +8,5 @@ module.exports = {
   'external-modulemap': '.*packages/([^/]+)/.*',
   categorizeByGroup: true,
   includeVersion: true,
-  name: 'tscmono',
+  name: 'TSCMono',
 };

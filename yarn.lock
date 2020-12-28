@@ -1148,7 +1148,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@strictsoftware/typedoc-plugin-monorepo@npm:^0.3.1":
+"@strictsoftware/typedoc-plugin-monorepo@^0.3.1":
   version: 0.3.1
   resolution: "@strictsoftware/typedoc-plugin-monorepo@npm:0.3.1"
   dependencies:
@@ -1156,6 +1156,17 @@ __metadata:
   peerDependencies:
     typedoc: ">=0.17.3 <1.0"
   checksum: 64fe50a901d8b36e218f7b3fce6f92a425d2d1b89ab2f039e6bafcdb1c4051f3ad8b4b2428177f1d6ed990edbec3b4ca869369809b363655e9ed007d4a0e4f83
+  languageName: node
+  linkType: hard
+
+"@strictsoftware/typedoc-plugin-monorepo@patch:@strictsoftware/typedoc-plugin-monorepo@^0.3.1#.yarn/patches/@strictsoftware-typedoc-plugin-monorepo::locator=%40tscmono%2Froot%40workspace%3A.":
+  version: 0.3.1
+  resolution: "@strictsoftware/typedoc-plugin-monorepo@patch:@strictsoftware/typedoc-plugin-monorepo@npm%3A0.3.1#.yarn/patches/@strictsoftware-typedoc-plugin-monorepo::version=0.3.1&hash=9b5cea&locator=%40tscmono%2Froot%40workspace%3A."
+  dependencies:
+    highlight.js: ^9.15.6
+  peerDependencies:
+    typedoc: ">=0.17.3 <1.0"
+  checksum: 8ed8eafd12c64143c6680a09a957eb520234bdc790b1e5df53176427b9aa37cf43190fb7587edb0441ce50bc30b162941db89b98471e63f7c4078ce334816426
   languageName: node
   linkType: hard
 
@@ -1172,7 +1183,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@tscmono/root@workspace:."
   dependencies:
-    "@strictsoftware/typedoc-plugin-monorepo": ^0.3.1
+    "@strictsoftware/typedoc-plugin-monorepo": "patch:@strictsoftware/typedoc-plugin-monorepo@^0.3.1#.yarn/patches/@strictsoftware-typedoc-plugin-monorepo"
     "@types/eslint": ^7
     "@types/node": ^14.14.16
     "@types/semver": ^7

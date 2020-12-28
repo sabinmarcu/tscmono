@@ -1,0 +1,54 @@
+diff --git a/dist/external-module-map-plugin.js b/dist/external-module-map-plugin.js
+index c552ad6888310fcd59639485a9057742f2f0b82c..e7b991aaf5ab7aa8953d98e4388f62be13c90dd8 100644
+--- a/dist/external-module-map-plugin.js
++++ b/dist/external-module-map-plugin.js
+@@ -59,19 +59,46 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
+                 }
+             }
+         }
++        getPackageJson(pwd) {
++            return require(
++                path_1.default.resolve(pwd, 'package.json'),
++            );
++        }
++        hasPackageJson(pwd) {
++            return fs_1.default.existsSync(
++                path_1.default.resolve(pwd, 'package.json'),
++            );
++        }
++        findPackageJson(pwd, prev) {
++            if (!pwd) {
++                return null;
++            }
++            if (prev && prev === pwd) {
++                return null;
++            }
++            if (this.hasPackageJson(pwd)) {
++                return pwd;
++            }
++            return this.findPackageJson(path_1.default.dirname(pwd), pwd);
++        };
+         onDeclarationBegin(context, reflection, node) {
+             if (!node || !this.isMappingEnabled)
+                 return;
+             var fileName = node.fileName;
+             let match = this.mapRegEx.exec(fileName);
++            let pkgPath = this.findPackageJson(fileName);
++            if (!pkgPath) {
++                return;
++            }
++            let pkg = this.getPackageJson(pkgPath)
+             /*
+         
+             */
+             if (null != match) {
+-                console.log(" Mapping ", fileName, " ==> ", match[1]);
+-                this.modules.add(match[1]);
++                console.log(" Mapping ", fileName, " ==> ", pkg.name);
++                this.modules.add(pkg.name);
+                 this.moduleRenames.push({
+-                    renameTo: match[1],
++                    renameTo: pkg.name,
+                     reflection: reflection
+                 });
+             }

@@ -1,8 +1,14 @@
 import { WorkspaceRootFinder } from './types/WorkspaceRoot';
 
-import { find as workspaceFinder } from './package/workspace';
-import { find as gitFinder } from './package/git';
+import workspaceFinder from './package/workspace';
+import gitFinder from './package/git';
 
+/**
+ * Finds the monorepo root, either via the [[findWithWorkspaces | Workspace Finder]]
+ * or the [[findWithGit | Git Finder]]
+ * @param cwd
+ * @category Workspace Root Finder
+ */
 export const findRoot: WorkspaceRootFinder['find'] = async (
   cwd = __dirname,
 ) => {

@@ -4,11 +4,21 @@ import { findPackageJson } from '../findPackageJson';
 import { getPackageJson } from '../getPackageJson';
 import { WorkspaceRootFinder } from '../types/WorkspaceRoot';
 
+/**
+ * Determines if a package.json has workspaces
+ * @param {JSON} json The contents of a package.json
+ * @category Util
+ */
 const hasWorkspaces = (json: any) => {
   const { workspaces } = (json || {});
   return !!workspaces;
 };
 
+/**
+ * Extracts an array of workspaces from a package.json
+ * @param {JSON} json The contents of a package.json
+ * @category Util
+ */
 const extractWorkspaces = (json: any): string[] => {
   const { workspaces } = json;
   if (Array.isArray(workspaces)) {
@@ -17,6 +27,14 @@ const extractWorkspaces = (json: any): string[] => {
   return [workspaces];
 };
 
+/**
+ * Checks if the current folder (pwd) contains a package.json with
+ * workspaces and then checks a relative path against workspaces
+ * to determine if the relative path belongs to the current monorepo
+ * @param pwd The path to check if it is the monorepo root
+ * @param relative Relative path to be checked against workspaces
+ * @category Util
+ */
 const isRoot = (
   pwd: string,
   relative: string,
@@ -29,7 +47,12 @@ const isRoot = (
   return micromatch.isMatch(relative, workspaces.map((it) => `${it}/**/*`));
 };
 
-export const find: WorkspaceRootFinder['find'] = async (
+/**
+ * Crawl directory structure to find root workspaces dir
+ * @param root Root dir to begin crawling
+ * @category Workspace Root Finder
+ */
+export const findWithWorkspaces: WorkspaceRootFinder['find'] = async (
   root: string = __dirname,
 ) => {
   let pwd = findPackageJson(root);
@@ -39,7 +62,9 @@ export const find: WorkspaceRootFinder['find'] = async (
   return pwd;
 };
 
+export default findWithWorkspaces;
+
 if (require.main?.filename === __filename) {
   // eslint-disable-next-line no-console
-  find().then((data) => console.log(data));
+  findWithWorkspaces().then((data) => console.log(data));
 }

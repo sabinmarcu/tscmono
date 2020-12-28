@@ -1,0 +1,16 @@
+{
+  "name": "@mono-tsconfig/utils",
+  "author": {
+    "email": "sabinmarcu@gmail.com",
+    "name": "Sabin Marcu"
+  },
+  "version": "0.1.0",
+  "dependencies": {
+    "micromatch": "^4.0.2",
+    "semver": "^7.3.4"
+  },
+  "devDependencies": {
+    "@types/micromatch": "^4",
+    "@types/semver": "^7"
+  }
+}

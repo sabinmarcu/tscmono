@@ -1,0 +1,13 @@
+{
+  "search.exclude": {
+    "**/.yarn": true,
+    "**/.pnp.*": true
+  },
+  "typescript.tsdk": ".yarn/sdks/typescript/lib",
+  "typescript.enablePromptUseWorkspaceTsdk": true,
+  "editor.defaultFormatter": "dbaeumer.vscode-eslint",
+  "[javascript]": {
+    "editor.defaultFormatter": "dbaeumer.vscode-eslint"
+  },
+  "eslint.nodePath": ".yarn/sdks"
+}

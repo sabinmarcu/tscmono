@@ -19,10 +19,10 @@
     "publish-packages": "run-s \"publish:*\"",
     "publish:check": "yarn version check",
     "publish:apply": "yarn version apply --all",
-    "publish:run": "yarn workspaces foreach run publish",
+    "publish:run": "yarn workspaces foreach run npm publish --tolerate-republish",
     "ver": "yarn version check --interactive"
   },
-  "version": "0.2.0",
+  "version": "0.2.1",
   "devDependencies": {
     "@commitlint/cli": "^11.0.0",
     "@commitlint/config-conventional": "^11.0.0",

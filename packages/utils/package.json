@@ -27,8 +27,5 @@
   },
   "publishConfig": {
     "access": "public"
-  },
-  "scripts": {
-    "publish": "yarn npm publish --tolerate-republish"
   }
 }

@@ -12,8 +12,7 @@
     "@types/node": "^14.14.16"
   },
   "scripts": {
-    "build": "json2ts -i schemas/ -o types/",
-    "publish": "yarn npm publish --tolerate-republish"
+    "build": "json2ts -i schemas/ -o types/"
   },
   "publishConfig": {
     "access": "public"

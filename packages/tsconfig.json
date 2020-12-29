@@ -2,6 +2,8 @@
   "compilerOptions": {
     "composite": true,
   },
+  "include": [],
+  "files": [],
   "references": [
     {
       "path": "./utils"

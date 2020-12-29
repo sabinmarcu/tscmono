@@ -5,9 +5,10 @@
     "outDir": "dist",
     "incremental": true,
     "composite": true,
-    "tsBuildInfoFile": "dist/.tsbuildinfo"
+    "tsBuildInfoFile": "dist/.tsbuildinfo",
+    "esModuleInterop": true
   },
   "include": [
-    "src/**/*"
+    "src"
   ]
 }

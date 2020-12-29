@@ -1,6 +1,7 @@
 import path from 'path';
 import { execPromised } from '../execPromised';
 import { makeLogger } from '../logger';
+import { getPackageJson } from '../package';
 import { WorkspaceConfig, YarnV2WorkspaceConfig } from '../types/WorkspaceConfig';
 import { WorkspaceParser } from '../types/WorkspaceParser';
 
@@ -15,7 +16,7 @@ const debug = makeLogger(__filename);
  * @param p Package path
  * @category Util
  */
-const fixV2Path = (
+export const fixV2Path = (
   pwd: string,
   p: string,
 ) => require(
@@ -41,7 +42,7 @@ export const YarnV2Parser: WorkspaceParser = {
   ) => {
     debug('Parsing Output');
     const boundFixV2Path = fixV2Path.bind(undefined, pwd);
-    const pkg = require(path.resolve(pwd, 'package.json'));
+    const pkg = getPackageJson(pwd);
     const output = input.join(',');
     const packages = (JSON.parse(`[${output.substr(0, output.length - 1)}]`)) as YarnV2WorkspaceConfig[];
     debug('Ignoring Root Package: %s', pkg.name);

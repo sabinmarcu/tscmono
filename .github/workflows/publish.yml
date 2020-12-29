@@ -26,7 +26,7 @@ jobs:
     - name: Publish
       run: yarn run publish-packages
       env:
-        NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+        YARN_NPM_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
     - name: Save Versioning
       uses: stefanzweifel/git-auto-commit-action@v4
       with: 

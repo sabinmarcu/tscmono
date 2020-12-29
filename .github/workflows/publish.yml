@@ -31,5 +31,4 @@ jobs:
       uses: stefanzweifel/git-auto-commit-action@v4
       with: 
         commit_message: Automatic Versioning
-        commit_options: '--no-verify --signoff'
-        push_options: '--no-verify'
+        commit_options: '--signoff'

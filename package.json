@@ -9,7 +9,7 @@
     "tests/*"
   ],
   "scripts": {
-    "postinstall": "husky install",
+    "postinstall": "is-ci || husky install",
     "docs": "yarn typedoc",
     "docs:dev": "run-p \"docs:dev:*\"",
     "docs:dev:docs": "nodemon -e ts,hbs -x yarn docs",
@@ -48,6 +48,7 @@
     "@strictsoftware/typedoc-plugin-monorepo": "patch:@strictsoftware/typedoc-plugin-monorepo@^0.3.1#.yarn/patches/@strictsoftware-typedoc-plugin-monorepo",
     "@types/eslint": "^7",
     "@types/glob": "^7",
+    "@types/is-ci": "^2",
     "@types/node": "^14.14.16",
     "@types/semver": "^7",
     "@typescript-eslint/eslint-plugin": "^4.11.0",
@@ -62,6 +63,7 @@
     "eslint-plugin-react-hooks": "^4.2.0",
     "glob": "^7.1.6",
     "husky": "5",
+    "is-ci": "^2.0.0",
     "nodemon": "^2.0.6",
     "npm-run-all": "^4.1.5",
     "serve": "^11.3.2",

@@ -39,6 +39,7 @@ module.exports = {
     {
       files: ['*.ts'],
       extends: ['eslint-config-airbnb-typescript'],
+      rules,
     },
   ],
 };

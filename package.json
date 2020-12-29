@@ -24,7 +24,7 @@
     "ver": "yarn version check --interactive",
     "clean": "git check-ignore **/* | xargs rm -rf"
   },
-  "version": "0.2.2",
+  "version": "0.2.3",
   "devDependencies": {
     "@commitlint/cli": "^11.0.0",
     "@commitlint/config-conventional": "^11.0.0",

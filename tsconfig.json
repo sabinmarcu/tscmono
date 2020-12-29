@@ -1,8 +1,8 @@
 {
   "extends": "./tsconfig.base.json",
-  "files": [],
-  "include": [],
-  "composite": true,
+  "compilerOptions": {
+    "composite": true,
+  },
   "references": [
     {
       "path": "./packages"

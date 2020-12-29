@@ -1,7 +1,7 @@
 {
-  "files": [],
-  "include": [],
-  "composite": true,
+  "compilerOptions": {
+    "composite": true,
+  },
   "references": [
     {
       "path": "./utils"

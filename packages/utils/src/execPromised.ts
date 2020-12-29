@@ -1,18 +1,11 @@
 import { exec } from 'child_process';
+import { makeLogger } from './logger';
+import { ExecOptions } from './types/ExecOptions';
 
 /**
- * @link [[execPromised]]
+ * @ignore
  */
-export type ExecOptions = {
-  /**
-   * CWD to run the process into
-   */
-  cwd?: string,
-  /**
-   * Should exit when STDERR is not empty
-   */
-  exitOnSTDERR?: boolean,
-};
+const debug = makeLogger(__filename);
 
 /**
  * Will execute a process and return a Promise that
@@ -26,7 +19,8 @@ export const execPromised = (
   options: ExecOptions = {},
 ): Promise<string[]> => new Promise(
   (accept, reject) => {
-    const { cwd, exitOnSTDERR } = options;
+    const { cwd = __dirname, exitOnSTDERR } = options;
+    debug(`Executing "${cmd}" in "${cwd}" ${exitOnSTDERR ? '(exiting on STDERR)' : ''}`);
     exec(cmd, { cwd }, (error, stdout, stderr) => {
       if (error) {
         return reject(error);

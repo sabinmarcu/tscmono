@@ -1,5 +1,23 @@
+import fs from 'fs';
 import path from 'path';
-import { hasPackageJson } from './hasPackageJson';
+
+/**
+ * Load a `package.json` file from a path
+ * @param pwd The path
+ * @category Util
+ */
+export const getPackageJson = (pwd: string) => require(
+  path.resolve(pwd, 'package.json'),
+);
+
+/**
+ * Determine if path contains a `package.json` file
+ * @param pwd Path
+ * @category Util
+ */
+export const hasPackageJson = (pwd: string) => fs.existsSync(
+  path.resolve(pwd, 'package.json'),
+);
 
 /**
  * Find a directory containing a package.json file, crawling from the

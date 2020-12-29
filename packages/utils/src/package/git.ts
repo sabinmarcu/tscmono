@@ -1,5 +1,11 @@
 import { execPromised } from '../execPromised';
+import { makeLogger } from '../logger';
 import { WorkspaceRootFinder } from '../types/WorkspaceRoot';
+
+/**
+ * @ignore
+ */
+const debug = makeLogger(__filename);
 
 /**
  * Determines the root of a project based on git
@@ -8,10 +14,14 @@ import { WorkspaceRootFinder } from '../types/WorkspaceRoot';
  */
 export const findWithGit: WorkspaceRootFinder['find'] = async (
   root: string = __dirname,
-) => (await execPromised(
-  'git rev-parse --show-toplevel',
-  { cwd: root },
-)).join('');
+) => {
+  const cmd = 'git rev-parse --show-toplevel';
+  debug('Finding Git Root');
+  return (await execPromised(
+    cmd,
+    { cwd: root },
+  )).join('');
+};
 
 export default findWithGit;
 

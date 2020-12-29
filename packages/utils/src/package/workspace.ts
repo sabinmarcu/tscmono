@@ -1,8 +1,13 @@
 import path from 'path';
 import micromatch from 'micromatch';
-import { findPackageJson } from '../findPackageJson';
-import { getPackageJson } from '../getPackageJson';
+import { findPackageJson, getPackageJson } from '../package';
 import { WorkspaceRootFinder } from '../types/WorkspaceRoot';
+import { makeLogger } from '../logger';
+
+/**
+ * @ignore
+ */
+const debug = makeLogger(__filename);
 
 /**
  * Determines if a package.json has workspaces
@@ -39,6 +44,7 @@ const isRoot = (
   pwd: string,
   relative: string,
 ): boolean => {
+  debug(`Trying "${pwd}"`);
   const pkg = getPackageJson(pwd);
   if (!hasWorkspaces(pkg)) {
     return false;
@@ -55,10 +61,12 @@ const isRoot = (
 export const findWithWorkspaces: WorkspaceRootFinder['find'] = async (
   root: string = __dirname,
 ) => {
+  debug('Finding Repo Root through Workspaces field');
   let pwd = findPackageJson(root);
   while (!isRoot(pwd, path.relative(pwd, root))) {
     pwd = findPackageJson(path.dirname(pwd));
   }
+  debug(`Found at "${pwd}"`);
   return pwd;
 };
 

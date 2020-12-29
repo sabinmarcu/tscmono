@@ -1,7 +1,13 @@
 import path from 'path';
 import { execPromised } from '../execPromised';
+import { makeLogger } from '../logger';
 import { WorkspaceConfig, YarnV2WorkspaceConfig } from '../types/WorkspaceConfig';
 import { WorkspaceParser } from '../types/WorkspaceParser';
+
+/**
+ * @ignore
+ */
+const debug = makeLogger(__filename);
 
 /**
  * Fixes Yarn V2 Output to conform to V1 Standards
@@ -21,19 +27,25 @@ const fixV2Path = (
  * @category Yarn Workspace Parsers
  */
 export const YarnV2Parser: WorkspaceParser = {
-  call: (cwd) => execPromised(
-    'yarn workspaces list -v --json',
-    { cwd },
-  ),
+  call: (cwd) => {
+    const cmd = 'yarn workspaces list -v --json';
+    debug('Discovering Yarn Berry Workspaces');
+    return execPromised(
+      cmd,
+      { cwd },
+    );
+  },
   parse: async (
     input,
     pwd,
   ) => {
+    debug('Parsing Output');
     const boundFixV2Path = fixV2Path.bind(undefined, pwd);
     const pkg = require(path.resolve(pwd, 'package.json'));
     const output = input.join(',');
     const packages = (JSON.parse(`[${output.substr(0, output.length - 1)}]`)) as YarnV2WorkspaceConfig[];
-    const validPackages = packages.filter(({ name }) => name !== pkg);
+    debug('Ignoring Root Package: %s', pkg.name);
+    const validPackages = packages.filter(({ name }) => name !== pkg.name);
     const json = validPackages.reduce(
       (prev, {
         name,

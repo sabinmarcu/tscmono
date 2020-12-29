@@ -7,6 +7,12 @@ import { execPromised } from './execPromised';
 import V1Parser from './parsers/v1';
 import V2Parser from './parsers/v2';
 import { findRoot } from './findRoot';
+import { makeLogger } from './logger';
+
+/**
+ * @ignore
+ */
+const debug = makeLogger(__filename, 'file');
 
 /**
  * @ignore
@@ -42,11 +48,14 @@ export const parseWorkspaces = async (
   rootDir?: string,
 ): Promise<WorkspaceConfig> => {
   const pwd = rootDir || await findRoot();
-  const version = (await execPromised('yarn --version'))[0];
+  debug('Parsing workspaces from: %s', pwd);
+  const version = (await execPromised('yarn --version', { cwd: __dirname }))[0];
+  debug('Parsing workspaces using yarn version: %s', version);
   const yarnVersion = semver.major(version);
   if (!(yarnVersion in parsers)) {
     throw new Error('Unknown Yarn Version');
   }
+  debug('Running Parser');
   return runParser(parsers[yarnVersion], pwd);
 };
 

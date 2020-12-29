@@ -47,6 +47,7 @@ export const config = {
 
 /**
  * Paths to be excluded from [[normalizePath | Path Normalization]]
+ * @category Logging
  */
 export const excludeFromPathNormalization = ['src', 'dist', 'types'];
 
@@ -55,6 +56,7 @@ export const excludeFromPathNormalization = ['src', 'dist', 'types'];
  * stripping [[excludeFromPathNormalization | excluded path segments]] and
  * removing extensions
  * @param filePath Path to be normalized
+ * @category Logging
  */
 export const normalizePath = (
   filePath: string,

@@ -1,0 +1,3 @@
+releases:
+  "@tscmono/root": prerelease
+  "@tscmono/utils": prerelease

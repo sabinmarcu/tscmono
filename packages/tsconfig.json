@@ -1,0 +1,10 @@
+{
+  "files": [],
+  "include": [],
+  "composite": true,
+  "references": [
+    {
+      "path": "/Users/sabinmarcu/Projects/monorepo-tsconfig/packages/utils"
+    }
+  ]
+}

@@ -116,4 +116,4 @@ dist
 docs
 
 # TSConfig Stuff
-tsconfig.json
+# tsconfig.json

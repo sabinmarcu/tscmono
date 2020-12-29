@@ -51,6 +51,10 @@ jobs:
         path: packages
     - name: Setup
       run: yarn install
+    - name: Debug Package
+      run: cat package.json
+    - name: Debug Version
+      run: cat .yarn/versions/*
     - name: Check Versioning
       run: yarn publish:check
     - name: Apply Versioning

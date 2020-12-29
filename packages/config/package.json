@@ -3,6 +3,10 @@
   "version": "0.1.2",
   "main": "dist/index.js",
   "license": "MIT",
+  "author": {
+    "email": "sabinmarcu@gmail.com",
+    "name": "Sabin Marcu"
+  },
   "keywords": [
     "typescript",
     "monorepo",

@@ -13,12 +13,12 @@
     "docs": "yarn typedoc",
     "docs:dev": "nodemon -e ts -x yarn docs",
     "build": "tsc -b",
-    "publish": "run-s \"publish:*\"",
+    "publish-packages": "run-s \"publish:*\"",
     "publish:check": "yarn version check",
     "publish:run": "yarn workspaces foreach run publish",
-    "version": "yarn version check --interactive"
+    "ver": "yarn version check --interactive && yarn version apply"
   },
-  "version": "0.1.0",
+  "version": "0.1.1",
   "devDependencies": {
     "@strictsoftware/typedoc-plugin-monorepo": "patch:@strictsoftware/typedoc-plugin-monorepo@^0.3.1#.yarn/patches/@strictsoftware-typedoc-plugin-monorepo",
     "@types/eslint": "^7",

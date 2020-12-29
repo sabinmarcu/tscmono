@@ -4,13 +4,14 @@
     "email": "sabinmarcu@gmail.com",
     "name": "Sabin Marcu"
   },
+  "license": "MIT",
   "keywords": [
     "typescript",
     "monorepo",
-    "yarn",
-    "workspaces",
+    "yarn workspaces",
     "tscmono",
-    "repo"
+    "utils",
+    "repo tools"
   ],
   "main": "dist/index.js",
   "version": "0.1.3",

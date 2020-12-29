@@ -26,7 +26,7 @@ jobs:
       uses: actions/upload-artifact@v2
       with:
         name: built-repo
-        path: .
+        path: packages
     
 
   publish:
@@ -39,10 +39,17 @@ jobs:
         node-version: [14.x]
 
     steps:
+    - uses: actions/checkout@v2
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v1
+      with:
+        node-version: ${{ matrix.node-version }}
     - name: Download Built Files
       uses: actions/download-artifact@v2
       with:
         name: built-repo
+    - name: Setup
+      run: yarn install
     - name: Check Versioning
       run: yarn publish:check
     - name: Apply Versioning
@@ -67,10 +74,17 @@ jobs:
         node-version: [14.x]
 
     steps:
+    - uses: actions/checkout@v2
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v1
+      with:
+        node-version: ${{ matrix.node-version }}
     - name: Download Built Files
       uses: actions/download-artifact@v2
       with:
         name: built-repo
+    - name: Setup
+      run: yarn install
     - name: Build Docs
       run: yarn run docs
     - name: Deploy

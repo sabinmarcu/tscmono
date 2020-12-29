@@ -1197,6 +1197,7 @@ __metadata:
     eslint-plugin-jsx-a11y: ^6.4.1
     eslint-plugin-react: ^7.21.5
     eslint-plugin-react-hooks: ^4.2.0
+    husky: 5
     lerna: ^3.22.1
     nodemon: ^2.0.6
     npm-run-all: ^4.1.5
@@ -4459,6 +4460,15 @@ fsevents@~2.1.2:
   dependencies:
     ms: ^2.0.0
   checksum: 4a08769434132a229a6153e77c869a9fe7132dc003d90119d54958e7b75feb65a3c4eca19fb18921568878ac455b6f399013279ad33248d94bd61a25def1fdda
+  languageName: node
+  linkType: hard
+
+"husky@npm:5":
+  version: 5.0.6
+  resolution: "husky@npm:5.0.6"
+  bin:
+    husky: lib/bin.js
+  checksum: f9c7516578a0bc25102c71f9fab580ac34c767eaf20a8382b94641cd094ea7e314a4571d9366b09f1e004620871cf49d627f270e6d40ad556f1ecb62512e08b2
   languageName: node
   linkType: hard
 

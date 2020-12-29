@@ -9,12 +9,14 @@
     "tests/*"
   ],
   "scripts": {
+    "postinstall": "husky install",
     "docs": "yarn typedoc",
     "docs:dev": "nodemon -e ts -x yarn docs",
     "build": "tsc -b",
     "publish": "run-s \"publish:*\"",
     "publish:check": "yarn version check",
-    "publish:run": "yarn workspaces foreach run publish"
+    "publish:run": "yarn workspaces foreach run publish",
+    "version": "yarn version check --interactive"
   },
   "version": "0.1.0",
   "devDependencies": {
@@ -32,6 +34,7 @@
     "eslint-plugin-jsx-a11y": "^6.4.1",
     "eslint-plugin-react": "^7.21.5",
     "eslint-plugin-react-hooks": "^4.2.0",
+    "husky": "5",
     "lerna": "^3.22.1",
     "nodemon": "^2.0.6",
     "npm-run-all": "^4.1.5",

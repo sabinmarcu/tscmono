@@ -21,5 +21,8 @@
     "@types/micromatch": "^4",
     "@types/node": "^14.14.16",
     "@types/semver": "^7"
+  },
+  "scripts": {
+    "publish": "yarn npm publish --access=public --tolerate-republish"
   }
 }

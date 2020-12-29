@@ -1,5 +1,0 @@
-declined:
-  - "@tscmono/root"
-  - "@tscmono/config"
-  - "@tscmono/repo"
-  - "@tscmono/utils"

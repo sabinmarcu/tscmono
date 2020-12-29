@@ -38,16 +38,3 @@ export const findPackageJson = (
   }
   return findPackageJson(path.dirname(pwd), pwd);
 };
-
-/**
- * Fixes Yarn V2 Output to conform to V1 Standards
- * @param pwd Root path
- * @param p Package path
- * @category Util
- */
-export const fixV2Path = (
-  pwd: string,
-  p: string,
-) => require(
-  path.resolve(pwd, p, 'package.json'),
-).name;

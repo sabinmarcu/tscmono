@@ -330,14 +330,6 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@tscmono/repo@workspace:packages/repo":
-  version: 0.0.0-use.local
-  resolution: "@tscmono/repo@workspace:packages/repo"
-  dependencies:
-    json-schema-to-typescript: ^10.0.3
-  languageName: unknown
-  linkType: soft
-
 "@tscmono/root@workspace:.":
   version: 0.0.0-use.local
   resolution: "@tscmono/root@workspace:."

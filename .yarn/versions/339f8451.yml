@@ -1,5 +1,0 @@
-releases:
-  "@tscmono/utils": prerelease
-
-declined:
-  - "@tscmono/root"

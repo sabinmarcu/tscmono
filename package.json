@@ -22,7 +22,7 @@
     "publish:run": "yarn workspaces foreach run publish",
     "ver": "yarn version check --interactive"
   },
-  "version": "0.1.5-0",
+  "version": "0.2.0",
   "devDependencies": {
     "@commitlint/cli": "^11.0.0",
     "@commitlint/config-conventional": "^11.0.0",

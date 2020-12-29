@@ -1,18 +1,17 @@
-name: Build and Publish Packages
+name: Publishing
 
 on:
   push:
     branches: [ master ]
 
 jobs:
-  build:
-
+  build: 
+    name: "Build Packages"
     runs-on: ubuntu-latest
 
     strategy:
       matrix:
         node-version: [14.x]
-
     steps:
     - uses: actions/checkout@v2
     - name: Use Node.js ${{ matrix.node-version }}
@@ -23,6 +22,18 @@ jobs:
       run: yarn install
     - name: Build
       run: yarn run build-packages
+    
+
+  publish:
+    name: "Publish Packages"
+    runs-on: ubuntu-latest
+    needs: build
+
+    strategy:
+      matrix:
+        node-version: [14.x]
+
+    steps:
     - name: Check Versioning
       run: yarn publish:check
     - name: Apply Versioning
@@ -36,3 +47,21 @@ jobs:
       with: 
         commit_message: Automatic Versioning
         commit_options: '--signoff'
+
+  docs:
+    name: "Build Docs"
+    runs-on: ubuntu-latest
+    needs: build
+
+    strategy:
+      matrix:
+        node-version: [14.x]
+
+    steps:
+    - name: Build Docs
+      run: yarn run docs
+    - name: Deploy
+      uses: peaceiris/actions-gh-pages@v3
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_dir: ./docs

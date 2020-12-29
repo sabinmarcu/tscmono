@@ -5,7 +5,7 @@
   "composite": true,
   "references": [
     {
-      "path": "/Users/sabinmarcu/Projects/monorepo-tsconfig/packages"
+      "path": "./packages"
     }
   ]
 }

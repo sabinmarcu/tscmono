@@ -19,7 +19,7 @@
     "build": "tsc -b",
     "build:dev": "tsc -b --watch",
     "publish-packages": "run-s \"publish:*\"",
-    "publish:check": "yarn version check",
+    "publish:check": "ls -al .yarn/versions && yarn version check",
     "publish:apply": "yarn version apply --all",
     "publish:run": "yarn workspaces foreach -vpitA run npm publish --tolerate-republish",
     "ver": "yarn version check --interactive",

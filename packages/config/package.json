@@ -1,0 +1,13 @@
+{
+  "name": "@tscmono/config",
+  "dependencies": {
+    "json-schema-to-typescript": "^10.0.3"
+  },
+  "scripts": {
+    "build": "json2ts -i schemas/ -o types/",
+    "publish": "yarn npm publish --tolerate-republish"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}

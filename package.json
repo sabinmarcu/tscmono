@@ -14,6 +14,7 @@
     "docs:dev": "run-p \"docs:dev:*\"",
     "docs:dev:docs": "nodemon -e ts,hbs -x yarn docs",
     "docs:dev:serve": "serve docs",
+    "build-packages": "yarn workspaces foreach run build",
     "build": "tsc -b",
     "publish-packages": "run-s \"publish:*\"",
     "publish:check": "yarn version check",

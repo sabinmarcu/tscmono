@@ -7,6 +7,12 @@
   "references": [
     {
       "path": "./utils"
-    }
+    },
+    {
+      "path": "./config"
+    },
+    {
+      "path": "./repo"
+    },
   ]
 }

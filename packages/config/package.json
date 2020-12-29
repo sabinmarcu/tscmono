@@ -1,8 +1,15 @@
 {
   "name": "@tscmono/config",
   "version": "0.1.0",
+  "main": "dist/index.js",
   "dependencies": {
-    "json-schema-to-typescript": "^10.0.3"
+    "@tscmono/utils": "0.1.4",
+    "cosmiconfig": "^7.0.0",
+    "json-schema-to-typescript": "^10.0.3",
+    "jsonschema": "^1.4.0"
+  },
+  "devDependencies": {
+    "@types/node": "^14.14.16"
   },
   "scripts": {
     "build": "json2ts -i schemas/ -o types/",

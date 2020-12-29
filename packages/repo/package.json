@@ -1,0 +1,28 @@
+{
+  "name": "@tscmono/repo",
+  "author": {
+    "email": "sabinmarcu@gmail.com",
+    "name": "Sabin Marcu"
+  },
+  "keywords": [
+    "typescript",
+    "monorepo",
+    "yarn",
+    "workspaces",
+    "tscmono",
+    "repo"
+  ],
+  "main": "dist/index.js",
+  "version": "0.1.0",
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "publish": "yarn npm publish --tolerate-republish"
+  },
+  "dependencies": {
+    "@tscmono/config": "0.1.0",
+    "@types/node": "^14.14.16",
+    "cosmiconfig": "^7.0.0"
+  }
+}

@@ -4,6 +4,8 @@ const glob = require('glob');
 
 const rules = {
   'import/prefer-default-export': 0,
+  'import/no-dynamic-require': 0,
+  'global-require': 0,
 };
 
 const tsConfigs = glob.sync('**/tsconfig.json')
@@ -16,6 +18,10 @@ const tsConfigs = glob.sync('**/tsconfig.json')
     ),
   ))
   .map((config) => path.relative(__dirname, config));
+
+if (process.env.DEBUG) {
+  console.log(tsConfigs);
+}
 
 module.exports = {
   extends: ['eslint-config-airbnb-base'],
@@ -33,14 +39,6 @@ module.exports = {
     {
       files: ['*.ts'],
       extends: ['eslint-config-airbnb-typescript'],
-    },
-    {
-      files: ['packages/utils/**/*'],
-      rules: {
-        ...rules,
-        'import/no-dynamic-require': 0,
-        'global-require': 0,
-      },
     },
   ],
 };

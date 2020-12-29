@@ -1,6 +1,6 @@
 {
   "name": "@tscmono/config",
-  "version": "0.1.3",
+  "version": "0.1.4",
   "main": "dist/index.js",
   "license": "MIT",
   "author": {
@@ -15,7 +15,7 @@
     "config"
   ],
   "dependencies": {
-    "@tscmono/utils": "0.1.6",
+    "@tscmono/utils": "0.1.7",
     "cosmiconfig": "^7.0.0",
     "json-schema-to-typescript": "^10.0.3",
     "jsonschema": "^1.4.0"

@@ -8,7 +8,6 @@
     "packages/*",
     "tests/*"
   ],
-  "private": "true",
   "scripts": {
     "postinstall": "is-ci || husky install",
     "docs": "yarn typedoc",
@@ -42,7 +41,7 @@
     "config:perm": "find .husky -type f -print0 | xargs -0 chmod +x",
     "config:clean": "git check-ignore * | xargs rm -rf"
   },
-  "version": "0.2.6",
+  "version": "0.2.7",
   "devDependencies": {
     "@commitlint/cli": "^11.0.0",
     "@commitlint/config-conventional": "^11.0.0",

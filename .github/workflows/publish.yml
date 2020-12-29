@@ -32,3 +32,4 @@ jobs:
       with: 
         commit_message: Automatic Versioning
         commit_options: '--no-verify --signoff'
+        push_options: '--no-verify'

@@ -27,7 +27,7 @@
     "chore": "gh issue create --label chore --project Backlog --assignee sabinmarcu --body \\\"\\\" --title \"$*\" && yarn fetch",
     "pr": "run-s \"pr:*\"",
     "pr:push": "git push origin \"$(yarn config:branch)\"",
-    "pr:create": "gh pr create --base master --repo \"$(yarn config:remote)\" --head \"$(yarn config:branch)\" --project Backlog --fill",
+    "pr:create": "gh pr create --base staging --repo \"$(yarn config:remote)\" --head \"$(yarn config:branch)\" --project Backlog --fill",
     "pr:merge": "gh pr merge -rd",
     "pr:pull": "git pull origin \"$(yarn config:branch)\"",
     "pr:prune": "yarn prune",

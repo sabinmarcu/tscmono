@@ -2,6 +2,14 @@
   "name": "@tscmono/config",
   "version": "0.1.2",
   "main": "dist/index.js",
+  "license": "MIT",
+  "keywords": [
+    "typescript",
+    "monorepo",
+    "yarn workspaces",
+    "tscmono",
+    "config"
+  ],
   "dependencies": {
     "@tscmono/utils": "0.1.6",
     "cosmiconfig": "^7.0.0",

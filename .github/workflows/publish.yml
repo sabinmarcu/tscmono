@@ -23,8 +23,12 @@ jobs:
       run: yarn install
     - name: Build
       run: yarn run build-packages
+    - name: Check Versioning
+      run: yarn publish:check
+    - name: Apply Versioning
+      run: yarn publish:apply
     - name: Publish
-      run: yarn run publish-packages
+      run: yarn publish:run
       env:
         YARN_NPM_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
     - name: Save Versioning

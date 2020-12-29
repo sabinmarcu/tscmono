@@ -1,9 +1,9 @@
 {
   "name": "@tscmono/config",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "main": "dist/index.js",
   "dependencies": {
-    "@tscmono/utils": "0.1.5",
+    "@tscmono/utils": "0.1.6",
     "cosmiconfig": "^7.0.0",
     "json-schema-to-typescript": "^10.0.3",
     "jsonschema": "^1.4.0"

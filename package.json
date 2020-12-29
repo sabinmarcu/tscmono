@@ -18,7 +18,7 @@
     "build": "tsc -b",
     "publish-packages": "run-s \"publish:*\"",
     "publish:check": "yarn version check",
-    "publish:apply": "yarn version apply",
+    "publish:apply": "yarn version apply --all",
     "publish:run": "yarn workspaces foreach run publish",
     "ver": "yarn version check --interactive"
   },

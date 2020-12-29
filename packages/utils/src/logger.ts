@@ -46,6 +46,26 @@ export const config = {
 };
 
 /**
+ * Paths to be excluded from [[normalizePath | Path Normalization]]
+ */
+export const excludeFromPathNormalization = ['src', 'dist', 'types'];
+
+/**
+ * Normalize path by replacing slashes with [[config.separator | naming separator]]
+ * stripping [[excludeFromPathNormalization | excluded path segments]] and
+ * removing extensions
+ * @param filePath Path to be normalized
+ */
+export const normalizePath = (
+  filePath: string,
+): string => filePath
+  .split('/')
+  .filter(Boolean)
+  .filter((it) => !excludeFromPathNormalization.includes(it))
+  .join(config.separator)
+  .replace(/\..*$/, '');
+
+/**
  * Normalize a Logging Naming by applying the prefix to the name,
  * if possible
  * @param loggingNaming Logging Naming to be normalized
@@ -100,7 +120,11 @@ export const parseLoggingNameByPackageName: LoggingNamingParser<[string]> = (
 export const parseLoggingNameByFileName: LoggingNamingParser<[string]> = (
   fileName: string,
 ) => {
-  const name = path.basename(fileName).replace(/\..*$/, '');
+  const absPath = path.resolve(fileName);
+  const pkgDir = findPackageJson(path.dirname(absPath));
+  const name = normalizePath(
+    absPath.replace(pkgDir, ''),
+  );
   return normalizeLoggingNaming(
     {
       name,

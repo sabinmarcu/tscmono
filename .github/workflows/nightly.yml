@@ -52,9 +52,11 @@ jobs:
     - name: Setup
       run: yarn install
     - name: Apply Versioning
-      run: yarn publish:apply
+      run: yarn publish-nightly:apply
     - name: Publish
-      run: yarn publish:run --tag nightly
+      run: yarn publish-nightly:run
+    - name: Tag
+      run: yarn publish-nightly:run
       env:
         YARN_NPM_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
     - name: Save Versioning

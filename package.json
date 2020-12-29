@@ -11,6 +11,7 @@
   "scripts": {
     "docs": "yarn typedoc",
     "docs:dev": "nodemon -e ts -x yarn docs",
+    "build": "tsc -b",
     "publish": "run-s \"publish:*\"",
     "publish:check": "yarn version check",
     "publish:run": "yarn workspaces foreach run publish"

@@ -353,6 +353,7 @@ __metadata:
     "@strictsoftware/typedoc-plugin-monorepo": "patch:@strictsoftware/typedoc-plugin-monorepo@^0.3.1#.yarn/patches/@strictsoftware-typedoc-plugin-monorepo"
     "@types/eslint": ^7
     "@types/glob": ^7
+    "@types/is-ci": ^2
     "@types/node": ^14.14.16
     "@types/semver": ^7
     "@typescript-eslint/eslint-plugin": ^4.11.0
@@ -367,6 +368,7 @@ __metadata:
     eslint-plugin-react-hooks: ^4.2.0
     glob: ^7.1.6
     husky: 5
+    is-ci: ^2.0.0
     nodemon: ^2.0.6
     npm-run-all: ^4.1.5
     serve: ^11.3.2
@@ -396,6 +398,13 @@ __metadata:
   version: 3.0.0
   resolution: "@types/braces@npm:3.0.0"
   checksum: 4bebd28e5b04c7e4930997017343516a2ab8fab2bcc64095da1e3b927c173f48c4bc3c75f3ef8037e9e8c7a54e0133b8705887ae52c8f9adb11dfb8d32cd9b78
+  languageName: node
+  linkType: hard
+
+"@types/ci-info@npm:*":
+  version: 2.0.0
+  resolution: "@types/ci-info@npm:2.0.0"
+  checksum: 89efcab6fdc38ae27febdf87e1de9b49bfff13778ca807f4a2236340d4fa53d446f4abe3c19a1b19619a295f1fac72d64c88eb49927e5f54a29c9cedb2ccd685
   languageName: node
   linkType: hard
 
@@ -430,6 +439,15 @@ __metadata:
     "@types/minimatch": "*"
     "@types/node": "*"
   checksum: 633bf1dda9a30899b233ed6b97c75cdd59f2ee856a12240c85474ce6889e26b3b3520b62de56f6bb61824af0ef51b311a0cae305f27ba0de8ddc4898a3673d42
+  languageName: node
+  linkType: hard
+
+"@types/is-ci@npm:^2":
+  version: 2.0.0
+  resolution: "@types/is-ci@npm:2.0.0"
+  dependencies:
+    "@types/ci-info": "*"
+  checksum: 870279b2fb690288351bca6c06e83c50d706ebe5c6da59fdfef2b4ced65572a459005b8fc020863b4f84fc59a3a71e565210c18dafd4fe85e86e4bf579803e74
   languageName: node
   linkType: hard
 

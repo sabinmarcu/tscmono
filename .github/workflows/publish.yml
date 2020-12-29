@@ -48,6 +48,7 @@ jobs:
       uses: actions/download-artifact@v2
       with:
         name: built-repo
+        path: packages
     - name: Setup
       run: yarn install
     - name: Check Versioning
@@ -83,6 +84,7 @@ jobs:
       uses: actions/download-artifact@v2
       with:
         name: built-repo
+        path: packages
     - name: Setup
       run: yarn install
     - name: Build Docs

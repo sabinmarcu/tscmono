@@ -16,11 +16,13 @@
     "docs:dev:serve": "serve docs",
     "build-packages": "yarn workspaces foreach run build",
     "build": "tsc -b",
+    "build:dev": "tsc -b --watch",
     "publish-packages": "run-s \"publish:*\"",
     "publish:check": "yarn version check",
     "publish:apply": "yarn version apply --all",
     "publish:run": "yarn workspaces foreach run npm publish --tolerate-republish",
-    "ver": "yarn version check --interactive"
+    "ver": "yarn version check --interactive",
+    "clean": "git check-ignore **/* | xargs rm -rf"
   },
   "version": "0.2.2",
   "devDependencies": {

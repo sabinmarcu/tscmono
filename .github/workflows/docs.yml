@@ -21,7 +21,9 @@ jobs:
         node-version: ${{ matrix.node-version }}
     - name: Setup
       run: yarn install
-    - name: Build
+    - name: Build Packages
+      run: yarn run build-packages
+    - name: Build Docs
       run: yarn run docs
     - name: Deploy
       uses: peaceiris/actions-gh-pages@v3

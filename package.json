@@ -50,7 +50,8 @@
     "config:issue": "yarn config:branch | cut -d/ -f2- | cut -d- -f2-",
     "config:perm": "find .husky -type f -print0 | xargs -0 chmod +x",
     "config:clean": "git check-ignore **/* | xargs rm -rf",
-    "test": "jest"
+    "test": "jest",
+    "lint": "eslint"
   },
   "version": "0.2.11",
   "devDependencies": {

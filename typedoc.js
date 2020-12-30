@@ -1,6 +1,7 @@
 module.exports = {
   out: 'docs',
   inputFiles: 'packages',
+  exclude: '**/*spec.+(ts|tsx)',
   plugin: [
     '@strictsoftware/typedoc-plugin-monorepo',
     'typedoc-plugin-jekyll',

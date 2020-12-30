@@ -26,7 +26,9 @@
     "@types/jest": "^26.0.19",
     "@types/micromatch": "^4",
     "@types/node": "^14.14.16",
-    "@types/semver": "^7"
+    "@types/semver": "^7",
+    "memfs": "^3.2.0",
+    "unionfs": "^4.4.0"
   },
   "publishConfig": {
     "access": "public"

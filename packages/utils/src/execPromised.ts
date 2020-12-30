@@ -19,7 +19,7 @@ export const execPromised = (
   options: ExecOptions = {},
 ): Promise<string[]> => new Promise(
   (accept, reject) => {
-    const { cwd = __dirname, exitOnSTDERR } = options;
+    const { cwd = process.cwd(), exitOnSTDERR } = options;
     debug(`Executing "${cmd}" in "${cwd}" ${exitOnSTDERR ? '(exiting on STDERR)' : ''}`);
     exec(cmd, { cwd }, (error, stdout, stderr) => {
       if (error) {

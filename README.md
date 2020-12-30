@@ -8,3 +8,6 @@
 
 [![](https://img.shields.io/github/last-commit/sabinmarcu/tscmono?label=last%20prod%20commit)]()
 [![](https://img.shields.io/github/last-commit/sabinmarcu/tscmono/staging?label=last%20staging%20commit)]()
+
+[![](https://img.shields.io/github/workflow/status/sabinmarcu/tscmono/Publishing)]()
+[![](https://img.shields.io/github/workflow/status/sabinmarcu/tscmono/Publishing%20Nightly)]()

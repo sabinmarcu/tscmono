@@ -19,7 +19,7 @@
     "access": "public"
   },
   "dependencies": {
-    "@tscmono/config": "0.1.4",
+    "@tscmono/config": "0.1.5",
     "@types/node": "^14.14.16",
     "cosmiconfig": "^7.0.0"
   }

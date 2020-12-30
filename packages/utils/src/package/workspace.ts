@@ -59,7 +59,7 @@ const isRoot = (
  * @category Workspace Root Finder
  */
 export const findWithWorkspaces: WorkspaceRootFinder['find'] = async (
-  root: string = __dirname,
+  root: string = process.cwd(),
 ) => {
   debug('Finding Repo Root through Workspaces field');
   let pwd = findPackageJson(root);

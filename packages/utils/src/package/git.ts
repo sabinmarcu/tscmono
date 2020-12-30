@@ -13,7 +13,7 @@ const debug = makeLogger(__filename);
  * @category Workspace Root Finder
  */
 export const findWithGit: WorkspaceRootFinder['find'] = async (
-  root: string = __dirname,
+  root: string = process.cwd(),
 ) => {
   const cmd = 'git rev-parse --show-toplevel';
   debug('Finding Git Root');

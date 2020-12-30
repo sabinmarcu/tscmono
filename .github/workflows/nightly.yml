@@ -55,8 +55,6 @@ jobs:
       run: yarn publish-nightly:apply
     - name: Publish
       run: yarn publish-nightly:run
-    - name: Debug
-      run: env
       env:
         YARN_NPM_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
     - name: Tag

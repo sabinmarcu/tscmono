@@ -3,7 +3,7 @@ import semver from 'semver';
 import { registerCache } from './cache';
 
 import { WorkspaceParser } from './types/WorkspaceParser';
-import { WorkspaceConfig } from './types/WorkspaceConfig';
+import { WorkspacesConfig } from './types/WorkspaceConfig';
 import { execPromised } from './execPromised';
 
 import V1Parser from './parsers/v1';
@@ -33,7 +33,7 @@ const parsers: Record<number, WorkspaceParser> = {
 const runParser = async (
   parser: WorkspaceParser,
   cwd: string,
-): Promise<WorkspaceConfig> => {
+): Promise<WorkspacesConfig> => {
   const input = await parser.call(cwd);
   const config = await parser.parse(input, cwd);
   return config;
@@ -48,7 +48,7 @@ const runParser = async (
  */
 export const parseWorkspaces = async (
   rootDir?: string,
-): Promise<WorkspaceConfig> => {
+): Promise<WorkspacesConfig> => {
   const pwd = rootDir || await root.value;
   debug('Parsing workspaces from: %s', pwd);
   const version = (await execPromised('yarn --version', { cwd: pwd }))[0];

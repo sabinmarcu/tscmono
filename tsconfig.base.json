@@ -3,7 +3,7 @@
     "incremental": true,                   
     "target": "es2015",                          
     "module": "commonjs",                     
-    "lib": ["ES5", "ES2015", "DOM"],                             
+    "lib": ["ES5", "ES2015", "DOM", "ES2019"],                             
     "allowJs": false,                       
     "checkJs": false,                       
     "declaration": true,                   

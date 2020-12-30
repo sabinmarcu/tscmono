@@ -1,6 +1,6 @@
 import { execPromised } from '../execPromised';
 import { makeLogger } from '../logger';
-import { WorkspaceConfig } from '../types/WorkspaceConfig';
+import { WorkspacesConfig } from '../types/WorkspaceConfig';
 import { WorkspaceParser } from '../types/WorkspaceParser';
 
 /**
@@ -31,7 +31,7 @@ export const YarnV1Parser: WorkspaceParser = {
    * Parse a Yarn V1 workspace list output
    * @param input The input to parse
    */
-  parse: async (input: string[]): Promise<WorkspaceConfig> => {
+  parse: async (input: string[]): Promise<WorkspacesConfig> => {
     debug('Parsing output');
     const output = input.join('\n');
     const [start, end] = [
@@ -43,7 +43,7 @@ export const YarnV1Parser: WorkspaceParser = {
         start,
         end - start + 1,
       ),
-    ) as WorkspaceConfig;
+    ) as WorkspacesConfig;
   },
 };
 

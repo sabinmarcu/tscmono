@@ -100,6 +100,7 @@ describe('pathsToTree', () => {
     {
       input: [
         'packages/utils',
+        'packages/things',
         'packages/things/awesome',
         'packages/things/shitty',
         'packages/others',

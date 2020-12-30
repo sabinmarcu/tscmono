@@ -142,5 +142,3 @@ export const generateTsConfigs = async (
   ) as TSConfigTemplate[];
   return tsConfigs;
 };
-
-generateTsConfigs(__dirname).then((data) => console.dir(data, { depth: null }));

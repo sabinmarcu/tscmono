@@ -60,10 +60,11 @@ export const excludeFromPathNormalization = ['src', 'dist', 'types'];
  */
 export const normalizePath = (
   filePath: string,
+  exclude: string[] = excludeFromPathNormalization,
 ): string => filePath
   .split('/')
   .filter(Boolean)
-  .filter((it) => !excludeFromPathNormalization.includes(it))
+  .filter((it) => !exclude.includes(it))
   .join(config.separator)
   .replace(/\..*$/, '');
 
@@ -234,7 +235,7 @@ export const extendLoggingNaming = (
   input: string,
 ): LoggingNaming => normalizeLoggingNaming({
   name: input,
-  prefix: loggingNaming.name,
+  prefix: normalizeLoggingNaming(loggingNaming).name,
 });
 
 /**
@@ -251,16 +252,6 @@ export const parseLoggerName = (
   const parsers = bindNameParsers(fileName, name);
   return parsers[parser]();
 };
-
-if (require.main?.filename === __filename) {
-  // eslint-disable-next-line no-console
-  console.log(
-    parseLoggerName(
-      'file',
-      { fileName: __filename },
-    ),
-  );
-}
 
 /**
  * Create a logger to be used in the app

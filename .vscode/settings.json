@@ -10,5 +10,7 @@
   "[javascript]": {
     "editor.defaultFormatter": "dbaeumer.vscode-eslint"
   },
-  "eslint.nodePath": ".yarn/sdks"
+  "eslint.nodePath": ".yarn/sdks",
+  "coverage-gutters.coverageBaseDir": "coverage",
+  "coverage-gutters.xmlname": "clover.xml"
 }

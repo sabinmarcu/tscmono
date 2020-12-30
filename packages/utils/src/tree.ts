@@ -38,12 +38,15 @@ export const pathToTree = (
 export const pathsToTree = (
   input: string[],
 ): TreeNode => {
-  const nodes = input.map((child) => pathToTree(`${rootString}/${child}`));
+  const nodes = input.map(
+    (child) => pathToTree(`${rootString}/${child}`),
+  ) as TreeNode[];
   const tree = nodes
     .reduce(
-      (prev: TreeNode, it: TreeNode | undefined) => (it
-        ? merge(prev, it)
-        : prev),
+      (
+        prev: TreeNode,
+        it: TreeNode,
+      ) => merge(prev, it),
       {} as TreeNode,
     );
   return tree;

@@ -7,5 +7,3 @@ if [ "$branch" = "master" ] || [ "$branch" = "staging" ]; then
   echo "You can't commit directly to master branch"
   exit 1
 fi
-
-yarn version check

@@ -1,12 +1,14 @@
 import semver from 'semver';
 
+import { registerCache } from './cache';
+
 import { WorkspaceParser } from './types/WorkspaceParser';
 import { WorkspaceConfig } from './types/WorkspaceConfig';
 import { execPromised } from './execPromised';
 
 import V1Parser from './parsers/v1';
 import V2Parser from './parsers/v2';
-import { findRoot } from './findRoot';
+import { root } from './findRoot';
 import { makeLogger } from './logger';
 
 /**
@@ -47,9 +49,9 @@ const runParser = async (
 export const parseWorkspaces = async (
   rootDir?: string,
 ): Promise<WorkspaceConfig> => {
-  const pwd = rootDir || await findRoot();
+  const pwd = rootDir || await root.value;
   debug('Parsing workspaces from: %s', pwd);
-  const version = (await execPromised('yarn --version', { cwd: __dirname }))[0];
+  const version = (await execPromised('yarn --version', { cwd: pwd }))[0];
   debug('Parsing workspaces using yarn version: %s', version);
   const yarnVersion = semver.major(version);
   if (!(yarnVersion in parsers)) {
@@ -59,9 +61,34 @@ export const parseWorkspaces = async (
   return runParser(parsers[yarnVersion], pwd);
 };
 
+export const workspaces = registerCache(
+  'workspaces',
+  parseWorkspaces,
+);
+
 export default parseWorkspaces;
 
 if (require.main?.filename === __filename) {
-  // eslint-disable-next-line no-console
-  parseWorkspaces().then((data) => console.log(data));
+  const val = async () => {
+    const value = await workspaces.value;
+    console.log('Value', value && Object.keys(value));
+  };
+  const refresh = async () => {
+    await workspaces.refresh(process.cwd());
+    console.log('Value');
+  };
+  const time = async (func: () => Promise<void>) => {
+    const start = Date.now();
+    console.log('Start');
+    await func();
+    console.log('End', Date.now() - start);
+  };
+  (async () => {
+    await time(val);
+    await time(val);
+    await time(val);
+    await time(refresh);
+    await time(val);
+    await time(val);
+  })();
 }

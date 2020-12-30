@@ -1,7 +1,7 @@
 /* eslint-disable import/prefer-default-export */
 import { cosmiconfig } from 'cosmiconfig';
 import { JSONSchema } from 'json-schema-to-typescript';
-import { findRoot, makeLogger } from '@tscmono/utils';
+import { makeLogger, root } from '@tscmono/utils';
 import { validate } from 'jsonschema';
 
 /**
@@ -20,10 +20,10 @@ const debug = makeLogger(__filename);
  */
 export const loadConfig = async <T>(
   schema: JSONSchema,
-  rootDir: string,
   name: string,
+  rootDir?: string,
 ): Promise<T> => {
-  const repoRoot = await findRoot(rootDir);
+  const repoRoot = rootDir || await root.value;
   debug(`Loading config for "${name}" from "${repoRoot}"`);
   const explorer = cosmiconfig(name);
   const output = await explorer.search(repoRoot);

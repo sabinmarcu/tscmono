@@ -75,3 +75,10 @@ jobs:
       run: yarn install
     - name: Run Tests
       run: yarn test
+    - name: Upload Coverage 
+      uses: codecov/codecov-action@v1
+      with:
+        token: ${{ secrets.CODECOV_TOKEN }}
+        file: ./coverage/clover.xml
+        fail_ci_if_error: true 
+        verbose: true)

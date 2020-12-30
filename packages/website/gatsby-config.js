@@ -1,6 +1,7 @@
 module.exports = {
   siteMetadata: {
     title: 'TSCMono',
+    pathPrefix: process.env.GATSBY_SITE_PREFIX || undefined,
     siteUrl: process.env.GATSBY_SITE_URL || 'http://localhost:8000/',
   },
   plugins: [

@@ -24,6 +24,7 @@ jobs:
       run: yarn workspace @tscmono/website run build
       env:
         "GATSBY_SITE_URL": "https://sabinmarcu.github.io/tscmono"
+        "GATSBY_SITE_PREFIX": "/tscmono"
     - name: Deploy
       uses: peaceiris/actions-gh-pages@v3
       with:

@@ -18,7 +18,7 @@ jobs:
       id: wait-for-tests
       with:
         token: ${{ secrets.GITHUB_TOKEN }}
-        checkName: "Test Packages"
+        checkName: test
     - uses: actions/checkout@v2
     - name: Use Node.js ${{ matrix.node-version }}
       uses: actions/setup-node@v1

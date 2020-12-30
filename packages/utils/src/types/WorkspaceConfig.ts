@@ -10,3 +10,5 @@ export type WorkspaceConfig = {
 export type YarnV2WorkspaceConfig = {
   name: string,
 } & WorkspaceConfig;
+
+export type WorkspacesConfig = Record<string, WorkspaceConfig>;

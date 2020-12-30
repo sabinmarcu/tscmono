@@ -1,6 +1,6 @@
-import { WorkspaceConfig } from './WorkspaceConfig';
+import { WorkspacesConfig } from './WorkspaceConfig';
 
 export interface WorkspaceParser {
   call: (cwd: string) => Promise<string[]>,
-  parse: (input: string[], cwd: string) => Promise<WorkspaceConfig>,
+  parse: (input: string[], cwd: string) => Promise<WorkspacesConfig>,
 }

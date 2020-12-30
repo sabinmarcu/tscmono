@@ -3,7 +3,7 @@ import { execPromised } from '../execPromised';
 import { root } from '../findRoot';
 import { makeLogger } from '../logger';
 import { getPackageJson } from '../package';
-import { WorkspaceConfig, YarnV2WorkspaceConfig } from '../types/WorkspaceConfig';
+import { WorkspacesConfig, YarnV2WorkspaceConfig, WorkspaceConfig } from '../types/WorkspaceConfig';
 import { WorkspaceParser } from '../types/WorkspaceParser';
 
 /**
@@ -62,9 +62,9 @@ export const YarnV2Parser: WorkspaceParser = {
             .map(boundFixV2Path),
           mismatchedWorkspaceDependencies: (mismatchedWorkspaceDependencies || [])
             .map(boundFixV2Path),
-        },
+        } as WorkspaceConfig,
       }),
-      {} as WorkspaceConfig,
+      {} as WorkspacesConfig,
     );
     return json;
   },

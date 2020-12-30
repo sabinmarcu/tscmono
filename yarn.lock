@@ -451,6 +451,7 @@ __metadata:
   languageName: node
   linkType: hard
 
+<<<<<<< HEAD
 "@babel/plugin-proposal-logical-assignment-operators@npm:^7.12.1":
   version: 7.12.1
   resolution: "@babel/plugin-proposal-logical-assignment-operators@npm:7.12.1"
@@ -462,11 +463,25 @@ __metadata:
   checksum: 08af656aaa40c554ba079c5b6cae9fe9dff95cf817debcbfc2ba5e7b7e051d6b2b04aa727d4e77404ea147758e513da7be8b35626e8053f50caceeaeff8f9763
   languageName: node
   linkType: hard
+=======
+"@tscmono/config@0.1.7, @tscmono/config@workspace:packages/config":
+  version: 0.0.0-use.local
+  resolution: "@tscmono/config@workspace:packages/config"
+  dependencies:
+    "@tscmono/utils": 0.1.10
+    "@types/node": ^14.14.16
+    cosmiconfig: ^7.0.0
+    json-schema-to-typescript: ^10.0.3
+    jsonschema: ^1.4.0
+  languageName: unknown
+  linkType: soft
+>>>>>>> Automatic Versioning
 
 "@babel/plugin-proposal-nullish-coalescing-operator@npm:^7.12.1":
   version: 7.12.1
   resolution: "@babel/plugin-proposal-nullish-coalescing-operator@npm:7.12.1"
   dependencies:
+<<<<<<< HEAD
     "@babel/helper-plugin-utils": ^7.10.4
     "@babel/plugin-syntax-nullish-coalescing-operator": ^7.8.0
   peerDependencies:
@@ -474,6 +489,14 @@ __metadata:
   checksum: 9c825901a13aa52330b7ec44f2b6355112d9e2dce9f3e0230c66a7536d542424d19a08b797cd72a00c18fe2e11b1d4037b365012eddfe69c169500b02ed83964
   languageName: node
   linkType: hard
+=======
+    "@tscmono/config": 0.1.7
+    "@tscmono/utils": 0.1.10
+    "@types/node": ^14.14.16
+    cosmiconfig: ^7.0.0
+  languageName: unknown
+  linkType: soft
+>>>>>>> Automatic Versioning
 
 "@babel/plugin-proposal-numeric-separator@npm:^7.12.5, @babel/plugin-proposal-numeric-separator@npm:^7.12.7":
   version: 7.12.7
@@ -487,9 +510,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+<<<<<<< HEAD
 "@babel/plugin-proposal-object-rest-spread@npm:7.10.4":
   version: 7.10.4
   resolution: "@babel/plugin-proposal-object-rest-spread@npm:7.10.4"
+=======
+"@tscmono/utils@0.1.10, @tscmono/utils@workspace:packages/utils":
+  version: 0.0.0-use.local
+  resolution: "@tscmono/utils@workspace:packages/utils"
+>>>>>>> Automatic Versioning
   dependencies:
     "@babel/helper-plugin-utils": ^7.10.4
     "@babel/plugin-syntax-object-rest-spread": ^7.8.0

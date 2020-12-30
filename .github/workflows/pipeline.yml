@@ -80,7 +80,7 @@ jobs:
     - name: Save Coverage
       uses: actions/upload-artifact@v2
       with:
-        name: built-repo
+        name: coverage
         path: coverage
 
   coverage:
@@ -95,7 +95,7 @@ jobs:
     - name: Download Coverage
       uses: actions/download-artifact@v2
       with:
-        name: built-repo
+        name: coverage
         path: coverage
     - name: Upload Coverage 
       uses: codecov/codecov-action@v1

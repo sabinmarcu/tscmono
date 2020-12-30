@@ -304,12 +304,12 @@ __metadata:
 
 "@strictsoftware/typedoc-plugin-monorepo@patch:@strictsoftware/typedoc-plugin-monorepo@^0.3.1#.yarn/patches/@strictsoftware-typedoc-plugin-monorepo::locator=%40tscmono%2Froot%40workspace%3A.":
   version: 0.3.1
-  resolution: "@strictsoftware/typedoc-plugin-monorepo@patch:@strictsoftware/typedoc-plugin-monorepo@npm%3A0.3.1#.yarn/patches/@strictsoftware-typedoc-plugin-monorepo::version=0.3.1&hash=9b5cea&locator=%40tscmono%2Froot%40workspace%3A."
+  resolution: "@strictsoftware/typedoc-plugin-monorepo@patch:@strictsoftware/typedoc-plugin-monorepo@npm%3A0.3.1#.yarn/patches/@strictsoftware-typedoc-plugin-monorepo::version=0.3.1&hash=a13b46&locator=%40tscmono%2Froot%40workspace%3A."
   dependencies:
     highlight.js: ^9.15.6
   peerDependencies:
     typedoc: ">=0.17.3 <1.0"
-  checksum: 8ed8eafd12c64143c6680a09a957eb520234bdc790b1e5df53176427b9aa37cf43190fb7587edb0441ce50bc30b162941db89b98471e63f7c4078ce334816426
+  checksum: b1cc2da84df59c246b9605bcd391d3d5fa9e4a68ddb3a613ee125a455e2960a8311f303f2ca0f18dbc6e2257fa1cb531371eb8d1b80b1f99dfef4451f98d3d19
   languageName: node
   linkType: hard
 

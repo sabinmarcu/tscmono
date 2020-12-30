@@ -1,5 +1,5 @@
 diff --git a/dist/external-module-map-plugin.js b/dist/external-module-map-plugin.js
-index c552ad6888310fcd59639485a9057742f2f0b82c..e7b991aaf5ab7aa8953d98e4388f62be13c90dd8 100644
+index c552ad6888310fcd59639485a9057742f2f0b82c..7ec02081cc92b2508d15dc3a5ce56333b5056ed2 100644
 --- a/dist/external-module-map-plugin.js
 +++ b/dist/external-module-map-plugin.js
 @@ -59,19 +59,46 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
@@ -45,10 +45,34 @@ index c552ad6888310fcd59639485a9057742f2f0b82c..e7b991aaf5ab7aa8953d98e4388f62be
 -                console.log(" Mapping ", fileName, " ==> ", match[1]);
 -                this.modules.add(match[1]);
 +                console.log(" Mapping ", fileName, " ==> ", pkg.name);
-+                this.modules.add(pkg.name);
++                this.modules.add({ path: match[1], name: pkg.name });
                  this.moduleRenames.push({
 -                    renameTo: match[1],
 +                    renameTo: pkg.name,
                      reflection: reflection
                  });
              }
+@@ -114,11 +141,12 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
+                     renaming.children.length = 0;
+                 context.project.removeReflection(renaming);
+             });
+-            this.modules.forEach((name) => {
++            this.modules.forEach(({ name, path }) => {
+                 let ref = refsArray
+                     .filter(ref => ref.name === name)
+                     .find(ref => path_1.default.isAbsolute(ref.originalName));
+-                let root = ref.originalName.replace(new RegExp(`${name}.*`, "gi"), name);
++                let root = ref.originalName.replace(new RegExp(`/${path}/.*`, "gi"), `/${path}`);
++                const readmePath = path_1.default.resolve(root, "README.md");
+                 try {
+                     // tslint:disable-next-line ban-types
+                     Object.defineProperty(ref, "kindString", {
+@@ -129,7 +157,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
+                             return "Package";
+                         }
+                     });
+-                    let readme = fs_1.default.readFileSync(path_1.default.join(root, "README.md"));
++                    let readme = fs_1.default.readFileSync(readmePath);
+                     ref.comment = new comments_1.Comment("", readme.toString());
+                 }
+                 catch (e) {

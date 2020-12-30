@@ -9,4 +9,5 @@ module.exports = {
   includeVersion: true,
   name: 'TSCMono',
   tsconfig: './tsconfig.base.json',
+  readme: './README.md',
 };

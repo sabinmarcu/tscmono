@@ -61,6 +61,10 @@ export const parseWorkspaces = async (
   return runParser(parsers[yarnVersion], pwd);
 };
 
+/**
+ * Cached version of the [[parseWorkspaces | Parse Workspaces]] function
+ * @category Cache
+ */
 export const workspaces = registerCache(
   'workspaces',
   parseWorkspaces,

@@ -6,6 +6,7 @@ import { registerCache } from '@tscmono/utils';
 /**
  * Obtain the monorepo `tscmono` config using cosmiconfig
  * @param rootDir Optional directory from which to obtain the repo config
+ * @category Config
  */
 const getRepoConfig = (
   rootDir: string = process.cwd(),
@@ -17,6 +18,7 @@ const getRepoConfig = (
 
 /**
  * Cached version of the [[getRepoConfig | Get Repo Config]] function
+ * @category Cache
  */
 export const repoConfig = registerCache(
   'repoConfig',

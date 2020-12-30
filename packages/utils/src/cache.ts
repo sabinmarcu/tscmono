@@ -1,5 +1,8 @@
 import { makeLogger } from './logger';
 
+/**
+ * @ignore
+ */
 const cache: Record<string, any> = {};
 
 /**

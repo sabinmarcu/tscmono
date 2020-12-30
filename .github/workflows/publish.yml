@@ -55,8 +55,10 @@ jobs:
       run: yarn publish:apply
     - name: Publish
       run: yarn publish:run
+      env:
+        YARN_NPM_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
     - name: Tag
-      run: yarn publish:run
+      run: yarn publish:tag
       env:
         YARN_NPM_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
     - name: Save Versioning

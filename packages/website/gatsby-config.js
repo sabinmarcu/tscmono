@@ -1,7 +1,7 @@
 module.exports = {
   siteMetadata: {
     title: 'TSCMono',
-    siteUrl: 'https://sabinmarcu.github.io/tscmono',
+    siteUrl: process.env.GATSBY_SITE_URL || 'http://localhost:8000/',
   },
   plugins: [
     'gatsby-plugin-emotion',

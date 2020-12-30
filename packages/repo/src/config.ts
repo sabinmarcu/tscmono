@@ -1,7 +1,7 @@
 import { loadConfig, JSONSchema } from '@tscmono/config';
 import repoSchema from '@tscmono/config/schemas/repo.json';
 import type { RepoConfig } from '@tscmono/config/types/repo';
-import { registerCache } from '@tscmono/utils/src/cache';
+import { registerCache } from '@tscmono/utils';
 
 /**
  * Obtain the monorepo `tscmono` config using cosmiconfig
@@ -21,4 +21,4 @@ const getRepoConfig = (
 export const repoConfig = registerCache(
   'repoConfig',
   getRepoConfig,
-)
+);

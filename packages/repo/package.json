@@ -14,13 +14,13 @@
     "repo tools"
   ],
   "main": "dist/index.js",
-  "version": "0.1.6",
+  "version": "0.1.7",
   "publishConfig": {
     "access": "public"
   },
   "dependencies": {
-    "@tscmono/config": "0.1.6",
-    "@tscmono/utils": "0.1.9",
+    "@tscmono/config": "0.1.7",
+    "@tscmono/utils": "0.1.10",
     "@types/node": "^14.14.16",
     "cosmiconfig": "^7.0.0"
   }

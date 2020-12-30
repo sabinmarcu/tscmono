@@ -322,11 +322,11 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@tscmono/config@0.1.6, @tscmono/config@workspace:packages/config":
+"@tscmono/config@0.1.7, @tscmono/config@workspace:packages/config":
   version: 0.0.0-use.local
   resolution: "@tscmono/config@workspace:packages/config"
   dependencies:
-    "@tscmono/utils": 0.1.9
+    "@tscmono/utils": 0.1.10
     "@types/node": ^14.14.16
     cosmiconfig: ^7.0.0
     json-schema-to-typescript: ^10.0.3
@@ -338,8 +338,8 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@tscmono/repo@workspace:packages/repo"
   dependencies:
-    "@tscmono/config": 0.1.6
-    "@tscmono/utils": 0.1.9
+    "@tscmono/config": 0.1.7
+    "@tscmono/utils": 0.1.10
     "@types/node": ^14.14.16
     cosmiconfig: ^7.0.0
   languageName: unknown
@@ -380,7 +380,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@tscmono/utils@0.1.9, @tscmono/utils@workspace:packages/utils":
+"@tscmono/utils@0.1.10, @tscmono/utils@workspace:packages/utils":
   version: 0.0.0-use.local
   resolution: "@tscmono/utils@workspace:packages/utils"
   dependencies:

@@ -1,5 +1,0 @@
-releases:
-  "@tscmono/config": patch
-  "@tscmono/repo": patch
-  "@tscmono/root": patch
-  "@tscmono/utils": patch

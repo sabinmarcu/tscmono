@@ -58,7 +58,7 @@ jobs:
       env:
         YARN_NPM_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
     - name: Tag
-      run: yarn publish-nightly:run
+      run: yarn publish-nightly:tag
       env:
         YARN_NPM_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
     - name: Save Versioning

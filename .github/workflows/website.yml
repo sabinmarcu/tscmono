@@ -1,0 +1,32 @@
+name: Build Website
+
+on: 
+  push:
+    branches:
+      - "master"
+
+jobs: 
+  build: 
+    name: "Build WEbsite"
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [14.x]
+    steps:
+    - uses: actions/checkout@v2
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v1
+      with:
+        node-version: ${{ matrix.node-version }}
+    - name: Setup
+      run: yarn install
+    - name: Build
+      run: yarn workspace @tscmono/website run build
+      env:
+        "GATSBY_SITE_URL": "https://sabinmarcu.github.io/tscmono"
+    - name: Deploy
+      uses: peaceiris/actions-gh-pages@v3
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_dir: ./packages/website/

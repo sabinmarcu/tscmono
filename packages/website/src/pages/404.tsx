@@ -1,4 +1,4 @@
-import Background from "../components/background"
+import Background from "../components/Background"
 import { InternalLink, Main, Reset, Subtitle, Text, Title } from "../components/Primitives"
 // markup
 const NotFoundPage = () => {

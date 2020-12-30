@@ -1657,7 +1657,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@emotion/react@npm:^11.1.4":
+"@emotion/react@npm:*, @emotion/react@npm:^11.1.4":
   version: 11.1.4
   resolution: "@emotion/react@npm:11.1.4"
   dependencies:
@@ -3058,6 +3058,7 @@ __metadata:
     "@emotion/styled": ^11.0.0
     "@mdx-js/mdx": ^1.6.22
     "@mdx-js/react": ^1.6.22
+    "@types/react": ^17.0.0
     gatsby: ^2.26.1
     gatsby-image: ^2.8.0
     gatsby-plugin-emotion: ^5.1.0
@@ -3067,11 +3068,13 @@ __metadata:
     gatsby-plugin-react-helmet: ^3.7.0
     gatsby-plugin-sharp: ^2.11.2
     gatsby-plugin-sitemap: ^2.9.0
+    gatsby-plugin-typescript: ^2.9.0
     gatsby-source-filesystem: ^2.8.1
     gatsby-transformer-sharp: ^2.9.0
     react: ^16.13.1
     react-dom: ^16.13.1
     react-helmet: ^6.1.0
+    regenerator-runtime: ^0.13.7
   languageName: unknown
   linkType: soft
 
@@ -3496,7 +3499,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/react@npm:*":
+"@types/react@npm:*, @types/react@npm:^17.0.0":
   version: 17.0.0
   resolution: "@types/react@npm:17.0.0"
   dependencies:
@@ -18734,7 +18737,7 @@ fsevents@~2.1.2:
   languageName: node
   linkType: hard
 
-"regenerator-runtime@npm:^0.13.3, regenerator-runtime@npm:^0.13.4":
+"regenerator-runtime@npm:^0.13.3, regenerator-runtime@npm:^0.13.4, regenerator-runtime@npm:^0.13.7":
   version: 0.13.7
   resolution: "regenerator-runtime@npm:0.13.7"
   checksum: 6ef567c662088b1b292214920cbd72443059298d477f72e1a37e0a113bafbfac9057cbfe35ae617284effc4b423493326a78561bbff7b04162c7949bdb9624e8

@@ -71,28 +71,3 @@ export const workspaces = registerCache(
 );
 
 export default parseWorkspaces;
-
-if (require.main?.filename === __filename) {
-  const val = async () => {
-    const value = await workspaces.value;
-    console.log('Value', value && Object.keys(value));
-  };
-  const refresh = async () => {
-    await workspaces.refresh(process.cwd());
-    console.log('Value');
-  };
-  const time = async (func: () => Promise<void>) => {
-    const start = Date.now();
-    console.log('Start');
-    await func();
-    console.log('End', Date.now() - start);
-  };
-  (async () => {
-    await time(val);
-    await time(val);
-    await time(val);
-    await time(refresh);
-    await time(val);
-    await time(val);
-  })();
-}

@@ -54,7 +54,7 @@ jobs:
   test: 
     name: "Test Packages"
     runs-on: ubuntu-latest
-    needs: lint
+    needs: build
 
     strategy:
       matrix:
@@ -86,7 +86,7 @@ jobs:
   coverage:
     name: "Upload Coverage"
     runs-on: ubuntu-latest
-    needs: build
+    needs: test
 
     steps:
     - name: Download Coverage

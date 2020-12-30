@@ -1,7 +1,5 @@
 releases:
   "@tscmono/config": patch
   "@tscmono/repo": patch
-
-declined:
-  - "@tscmono/root"
-  - "@tscmono/utils"
+  "@tscmono/root": patch
+  "@tscmono/utils": patch

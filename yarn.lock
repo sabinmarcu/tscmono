@@ -322,7 +322,19 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@tscmono/config@0.1.5, @tscmono/config@workspace:packages/config":
+"@tscmono/config@npm:0.1.4":
+  version: 0.1.4
+  resolution: "@tscmono/config@npm:0.1.4"
+  dependencies:
+    "@tscmono/utils": 0.1.7
+    cosmiconfig: ^7.0.0
+    json-schema-to-typescript: ^10.0.3
+    jsonschema: ^1.4.0
+  checksum: 5ec3beca05be5fa5e763c8cfcc586271a214acf3e963d853dd95054024d79abd26e0a63328a6b798831b3e268a079eeea497e3fb8e93228c3a4d43c0f83ddf67
+  languageName: node
+  linkType: hard
+
+"@tscmono/config@workspace:packages/config":
   version: 0.0.0-use.local
   resolution: "@tscmono/config@workspace:packages/config"
   dependencies:
@@ -394,6 +406,18 @@ __metadata:
     semver: ^7.3.4
   languageName: unknown
   linkType: soft
+
+"@tscmono/utils@npm:0.1.7":
+  version: 0.1.7
+  resolution: "@tscmono/utils@npm:0.1.7"
+  dependencies:
+    debug: ^4.3.1
+    debug-extend: ^0.0.4
+    micromatch: ^4.0.2
+    semver: ^7.3.4
+  checksum: 87ab7af5ead2d4161136d683439fbd965987247711fae3a0e929392b9080802312cf82eb755f2ab551e6e683bd7b8844c08ed72c3d72f7dc1ed169ed6723a5e0
+  languageName: node
+  linkType: hard
 
 "@types/braces@npm:*":
   version: 3.0.0

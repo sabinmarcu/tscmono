@@ -86,7 +86,7 @@ jobs:
   coverage:
     name: "Upload Coverage"
     runs-on: ubuntu-latest
-    needs: test
+    needs: build
 
     steps:
     - name: Download Coverage
@@ -106,7 +106,7 @@ jobs:
     name: "Publish Packages (Nightly)"
     runs-on: ubuntu-latest
     if: github.ref == 'refs/heads/staging'
-    needs: test
+    needs: [test, lint]
 
     strategy:
       matrix:
@@ -146,7 +146,7 @@ jobs:
     name: "Publish Packages"
     runs-on: ubuntu-latest
     if: github.ref == 'refs/heads/master'
-    needs: test
+    needs: [test, lint]
 
     strategy:
       matrix:
@@ -185,7 +185,7 @@ jobs:
     name: "Build Docs"
     runs-on: ubuntu-latest
     if: github.ref == 'refs/heads/master'
-    needs: test
+    needs: [test, lint]
 
     strategy:
       matrix:

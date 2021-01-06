@@ -1,0 +1,10 @@
+releases:
+  "@tscmono/config": patch
+
+undecided:
+  - "@tscmono/root"
+  - "@tscmono/cli"
+  - "@tscmono/plugin-repo"
+  - "@tscmono/plugin-workspace"
+  - "@tscmono/utils"
+  - "@tscmono/website"

@@ -97,6 +97,8 @@
   "dependencies": {
     "@tscmono/cli": "workspace:packages/cli",
     "@tscmono/plugin-repo": "workspace:packages/plugin-repo",
-    "@tscmono/plugin-workspace": "workspace:packages/plugin-workspace"
+    "@tscmono/plugin-workspace": "workspace:packages/plugin-workspace",
+    "@tscmono/utils": "workspace:packages/utils",
+    "@tscmono/config": "workspace:packages/config"
   }
 }

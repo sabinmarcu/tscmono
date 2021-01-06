@@ -1,3 +1,4 @@
 src
 tsconfig.json
+!schemas/tsconfig.json
 dist/.tsbuildinfo

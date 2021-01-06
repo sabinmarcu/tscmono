@@ -54,7 +54,7 @@
     "test": "jest",
     "lint": "eslint"
   },
-  "version": "0.2.14",
+  "version": "0.2.15",
   "devDependencies": {
     "@babel/core": "^7.12.10",
     "@babel/preset-env": "^7.12.11",
@@ -96,9 +96,9 @@
   },
   "dependencies": {
     "@tscmono/cli": "workspace:packages/cli",
+    "@tscmono/config": "workspace:packages/config",
     "@tscmono/plugin-repo": "workspace:packages/plugin-repo",
     "@tscmono/plugin-workspace": "workspace:packages/plugin-workspace",
-    "@tscmono/utils": "workspace:packages/utils",
-    "@tscmono/config": "workspace:packages/config"
+    "@tscmono/utils": "workspace:packages/utils"
   }
 }

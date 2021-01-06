@@ -1,8 +1,0 @@
-releases:
-  "@tscmono/cli": patch
-  "@tscmono/config": patch
-  "@tscmono/plugin-repo": patch
-  "@tscmono/plugin-workspace": patch
-  "@tscmono/root": patch
-  "@tscmono/utils": patch
-  "@tscmono/website": patch

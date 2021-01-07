@@ -29,8 +29,5 @@
     "forceConsistentCasingInFileNames": true,  
     "resolveJsonModule": true,
     "jsx": "react-jsx"
-  },
-  "paths": {
-    "dist/*": "src/*"
   }
 }

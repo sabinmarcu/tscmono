@@ -58,7 +58,9 @@ export const parseWorkspaces = async (
     throw new Error('Unknown Yarn Version');
   }
   debug('Running Parser');
-  return runParser(parsers[yarnVersion], pwd);
+  const result = runParser(parsers[yarnVersion], pwd);
+  debug('Parser complete, resolving');
+  return result;
 };
 
 /**

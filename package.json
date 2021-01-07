@@ -99,6 +99,15 @@
     "@tscmono/config": "workspace:packages/config",
     "@tscmono/plugin-repo": "workspace:packages/plugin-repo",
     "@tscmono/plugin-workspace": "workspace:packages/plugin-workspace",
+    "@tscmono/preset-default": "workspace:packages/preset-default",
     "@tscmono/utils": "workspace:packages/utils"
+  },
+  "dependenciesMeta": {
+    "@strictsoftware/typedoc-plugin-monorepo@0.3.1": {
+      "unplugged": true
+    },
+    "typedoc@0.17.8": {
+      "unplugged": true
+    }
   }
 }

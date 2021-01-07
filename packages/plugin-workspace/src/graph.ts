@@ -9,9 +9,10 @@ import {
 } from '@tscmono/plugin-repo';
 import merge from 'ts-deepmerge';
 
-// @ts-ignore
 import { WorkspaceRootConfig } from '@tscmono/config/types/root';
 import { WorkspaceConfig } from '@tscmono/utils/src/types/WorkspaceConfig';
+
+// @ts-ignore
 import template from './template.json';
 import { getConfig } from './config';
 
@@ -96,13 +97,13 @@ export const packageToTsConfig = async (
     }));
   return {
     path: tsConfigPath,
-    content: merge(
+    content: merge(...[
       rootExtra,
       tpl,
       conf.overrides || {},
       extendedConf,
       { references },
-    ),
+    ].filter(Boolean)),
   };
 };
 

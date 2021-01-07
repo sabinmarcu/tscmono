@@ -1,20 +1,18 @@
 import {
-  root,
   findRoot,
   getPackageJson,
   makeLogger,
   registerCache,
+  root,
 } from '@tscmono/utils';
 
-const debug = makeLogger(__filename);
+const baseDebug = makeLogger(__filename);
 
 export const getPlugins = async (
-  rootDir: string = process.cwd(),
+  pwd: string = process.cwd(),
+  from: string = 'root',
 ) => {
-  const pwd = rootDir
-    ? await findRoot(rootDir)
-    : await root.value;
-
+  const debug = baseDebug.extend(from);
   const pkg = getPackageJson(pwd);
   debug('Loaded package.json');
 
@@ -27,19 +25,58 @@ export const getPlugins = async (
     .flat()
     .sort()
     .filter((it, idx, arr) => arr.indexOf(it) === idx);
+
   debug('Extracted deps (%d)', deps.length);
+
+  let allPlugins = new Map<string, any>();
+
+  const presets = deps
+    .filter((it) => /@?tscmono[/-]preset-/g.test(it));
+
+  debug('Extracted presets', presets);
+
+  await Promise.all(
+    presets.map(async (preset) => {
+      const presetPath = require.resolve(preset, { paths: [pwd] });
+      debug('Loading preset %s from %s', preset, presetPath);
+      const presetPlugins = await getPlugins(presetPath, preset);
+      debug('Loading %d plugins of preset %s', presetPlugins.size, preset);
+      allPlugins = new Map([...allPlugins, ...presetPlugins]);
+    }),
+  );
+
+  debug('Loaded presets (%d)', allPlugins.size, Array.from(allPlugins.keys()));
 
   const plugins = deps
     .filter((it) => /@?tscmono[/-]plugin-/g.test(it));
 
   debug('Extracted plugins', plugins);
 
-  return plugins.map((it) => require(
-    require.resolve(it, { paths: [pwd] }),
+  plugins.forEach((it) => allPlugins.set(
+    it,
+    require(
+      require.resolve(it, { paths: [pwd] }),
+    ),
   ));
+
+  debug('Loaded plugins (%d)', allPlugins.size, Array.from(allPlugins.keys()));
+
+  return allPlugins;
+};
+
+export const getPluginsFromRoot = async (
+  rootDir: string = process.cwd(),
+) => {
+  const pwd = rootDir
+    ? await findRoot(rootDir)
+    : await root.value;
+  return Array.from(
+    (await getPlugins(pwd))
+      .values(),
+  );
 };
 
 export const plugins = registerCache(
   'plugins',
-  getPlugins,
+  getPluginsFromRoot,
 );

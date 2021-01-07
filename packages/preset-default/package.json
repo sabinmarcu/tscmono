@@ -1,0 +1,19 @@
+{
+  "main": "package.json",
+  "publishConfig": {
+    "access": "public"
+  },
+  "author": {
+    "email": "sabinmarcu@gmail.com",
+    "name": "Sabin Marcu"
+  },
+  "name": "@tscmono/preset-default",
+  "version": "0.1.0",
+  "dependencies": {
+    "@tscmono/plugin-repo": "0.1.13",
+    "@tscmono/plugin-workspace": "0.1.2"
+  },
+  "tscmono": {
+    "preset": "default"
+  }
+}

@@ -10,6 +10,7 @@ const pkg = getPackageJson(
 
 export const run = async (args: string[]) => {
   const ownPlugins = await plugins.value;
+
   const cli = new Cli({
     binaryLabel: 'TSCMono',
     binaryName: 'tscmono',

@@ -42,7 +42,8 @@ export const registerCache = <T, K extends any[]>(
       log('Retrieving value');
       if (!cache[name]) {
         log('Initial load');
-        return refresh(...lastArguments as K);
+        cache[name] = refresh(...lastArguments as K);
+        return cache[name];
       }
       return Promise.resolve(cache[name]);
     },

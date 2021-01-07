@@ -66,6 +66,7 @@ export const YarnV2Parser: WorkspaceParser = {
       }),
       {} as WorkspacesConfig,
     );
+    debug('Parsing complete, resolving');
     return json;
   },
 };

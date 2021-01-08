@@ -8,10 +8,10 @@
     "name": "Sabin Marcu"
   },
   "name": "@tscmono/preset-default",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "dependencies": {
-    "@tscmono/plugin-repo": "0.1.14",
-    "@tscmono/plugin-workspace": "0.1.3"
+    "@tscmono/plugin-repo": "0.1.15",
+    "@tscmono/plugin-workspace": "0.1.4"
   },
   "tscmono": {
     "preset": "default"

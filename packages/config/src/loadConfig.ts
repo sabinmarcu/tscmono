@@ -13,6 +13,12 @@ import { deepCopy } from 'deep-copy-ts';
  */
 const debug = makeLogger(__filename);
 
+/**
+ * Resolve a schema reference to schema file
+ * @param ref Reference to be resolved
+ * @param rootDir Directory to be resolved against
+ * @category Config
+ */
 const resolveRef = (
   ref: string,
   rootDir: string,
@@ -24,6 +30,12 @@ const resolveRef = (
   return paths.filter((it) => fs.existsSync(it))?.[0] ?? undefined;
 };
 
+/**
+ * Obtain a list of sub-schemas (referenced schemas) from a given schema
+ * @param schema Schema to be parsed
+ * @param rootDir Root directory to be used when resolving schema references
+ * @category Config
+ */
 const getSubSchemas = (
   schema: Partial<JSONSchema>,
   rootDir: string,

@@ -3,6 +3,7 @@ import {
   makeLogger,
   root,
   workspaces,
+  normalizePath,
 } from '@tscmono/utils';
 import {
   repoConfig,
@@ -35,22 +36,17 @@ type TSConfigTemplate = {
   content: any & { references: {path: string}[] },
 };
 
-export const normalizePath = (
-  rootPath: string,
-  pkgRootPath: string,
-  pathToResolve: string,
-) => {
-  const basePath = path.resolve(rootPath, pathToResolve);
-  const newPath = path.relative(
-    pkgRootPath,
-    basePath,
-  );
-  if (newPath[0] !== '.') {
-    return `./${newPath}`;
-  }
-  return newPath;
-};
-
+/**
+ * Generate a [[TSConfigTemplate]] for a specific
+ * workspace, given the root configuration, base
+ * template, the root directory and the workspaces list
+ * @param pkg The package (workspace) name
+ * @param rootConfig The root configuration
+ * @param rootDir The root directory
+ * @param tpl The base template
+ * @param pkgList The packages (workspaces) list
+ * @category TSConfig Generation
+ */
 export const packageToTsConfig = async (
   pkg: WorkspaceConfig,
   rootConfig: WorkspaceRootConfig,
@@ -65,8 +61,8 @@ export const packageToTsConfig = async (
   const rootExtra = {
     extends: normalizePath(
       rootDir,
-      pkgPath,
       rootConfig.baseConfig,
+      pkgPath,
     ),
   };
   const tsConfigPath = path.resolve(
@@ -108,7 +104,7 @@ export const packageToTsConfig = async (
 };
 
 /**
- * Generate [[TSConfigTemplate]]s for all repo paths
+ * Generate [[TSConfigTemplate]]s for all workspaces
  * @param rootDir The root directory to be used when generating tsConfigs
  * @category TSConfig Generation
  */

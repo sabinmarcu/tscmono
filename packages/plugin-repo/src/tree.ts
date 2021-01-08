@@ -20,6 +20,7 @@ const debug = makeLogger(__filename);
 /**
  * Create a project tree based on workspaces
  * @param rootDir The root directory used in creating the project tree
+ * @category Tree
  */
 export const getTree = async (
   rootDir: string = process.cwd(),

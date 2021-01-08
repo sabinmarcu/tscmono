@@ -1,31 +1,22 @@
 import path from 'path';
 import fs from 'fs';
 import { Command } from 'clipanion';
-import { root } from '@tscmono/utils';
+import { root, normalizePath } from '@tscmono/utils';
 import merge from 'ts-deepmerge';
 import { repoConfig } from './config';
 import { generateTsConfigs } from './tree';
 
+/**
+ * Command path of the [[RepoCommand]]
+ * @category Command
+ */
 export const commandPath = ['generate', 'repo'];
-
-export const normalizePath = (
-  rootPath: string,
-  pathToResolve: string,
-) => {
-  const newPath = path.relative(
-    rootPath,
-    pathToResolve,
-  );
-  if (newPath[0] !== '.') {
-    return `./${newPath}`;
-  }
-  return newPath;
-};
 
 /**
  * Command used to generate all repo tsconfigs
+ * @category Command
  */
-export class RepoTSCMonoCommand extends Command {
+export class RepoCommand extends Command {
   @Command.Path(...commandPath)
   async execute() {
     const rootDir = await root.value;

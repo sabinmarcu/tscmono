@@ -6,8 +6,19 @@ import {
   root,
 } from '@tscmono/utils';
 
+/**
+ * @ignore
+ */
 const baseDebug = makeLogger(__filename);
 
+/**
+ * Resolve installed plugins from a given path, and any 
+ * installed presets
+ * @param pwd Path to be used when resolving plugins
+ * @param from Name to be used for logging purposes 
+ * (defaults to 'root' and should be used as package name of preset)
+ * @category Plugins
+ */
 export const getPlugins = async (
   pwd: string = process.cwd(),
   from: string = 'root',
@@ -64,6 +75,12 @@ export const getPlugins = async (
   return allPlugins;
 };
 
+/**
+ * Obtain plugins from installed plugins and presets of 
+ * project root
+ * @param rootDir Root directory to treat as project root
+ * @category Plugins
+ */
 export const getPluginsFromRoot = async (
   rootDir: string = process.cwd(),
 ) => {
@@ -76,6 +93,10 @@ export const getPluginsFromRoot = async (
   );
 };
 
+/**
+ * Cached variant of the [[getPluginsFromRoot]] function
+ * @category Plugins
+ */
 export const plugins = registerCache(
   'plugins',
   getPluginsFromRoot,

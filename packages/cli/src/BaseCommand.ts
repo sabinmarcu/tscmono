@@ -1,6 +1,10 @@
 import { Command } from 'clipanion';
 import { plugins } from './plugins';
 
+/**
+ * Command to be executed when running `tscmono` or `tscmono generate`
+ * @category Command
+ */
 export class BaseCommand extends Command {
   @Command.Path('generate')
   @Command.Path()

@@ -4,10 +4,17 @@ import { getPackageJson } from '@tscmono/utils';
 import { BaseCommand } from './BaseCommand';
 import { plugins } from './plugins';
 
+/**
+ * @ignore
+ */
 const pkg = getPackageJson(
   path.resolve(__dirname, '../'),
 );
 
+/**
+ * Run a CLI instance
+ * @category Lifecycle
+ */
 export const run = async (args: string[]) => {
   const ownPlugins = await plugins.value;
 

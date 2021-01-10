@@ -1,7 +1,7 @@
 {
   "main": "dist/index.js",
   "license": "MIT",
-  "version": "0.1.5",
+  "version": "0.1.6",
   "typings": "dist/index.d.ts",
   "bin": {
     "tscmono": "bin/tscmono.sh"
@@ -23,7 +23,7 @@
   },
   "name": "@tscmono/cli",
   "dependencies": {
-    "@tscmono/utils": "0.1.18",
+    "@tscmono/utils": "0.1.19",
     "clipanion": "^2.6.2"
   },
   "scripts": {

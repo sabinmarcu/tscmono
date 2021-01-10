@@ -1,6 +1,8 @@
 {
   "main": "dist/index.js",
+  "license": "MIT",
   "version": "0.1.5",
+  "typings": "dist/index.d.ts",
   "bin": {
     "tscmono": "bin/tscmono.sh"
   },

@@ -15,6 +15,7 @@
     "command"
   ],
   "main": "dist/index.js",
+  "typings": "dist/index.d.ts",
   "version": "0.1.4",
   "publishConfig": {
     "access": "public"

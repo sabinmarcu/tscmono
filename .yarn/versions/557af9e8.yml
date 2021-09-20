@@ -1,8 +1,0 @@
-undecided:
-  - "@tscmono/root"
-  - "@tscmono/cli"
-  - "@tscmono/config"
-  - "@tscmono/plugin-repo"
-  - "@tscmono/plugin-workspace"
-  - "@tscmono/preset-default"
-  - "@tscmono/website"

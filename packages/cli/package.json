@@ -23,7 +23,7 @@
   },
   "name": "@tscmono/cli",
   "dependencies": {
-    "@tscmono/utils": "0.1.19",
+    "@tscmono/utils": "0.1.20",
     "clipanion": "^2.6.2"
   },
   "scripts": {

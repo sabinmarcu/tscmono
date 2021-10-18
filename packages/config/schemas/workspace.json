@@ -1,59 +1,26 @@
 {
   "title": "Workspace Config",
   "definitions": {
-    "preset": {
-      "properties": {
-        "preset": {
-          "type": "string"
-        }
-      },
-      "required": [
-        "preset"
-      ]
+    "config": {
+      "$ref": "./config.json"
     },
-    "presets": {
+    "configs": {
       "properties": {
-        "presets": {
-          "type": "array",
-          "items": {
-            "type": "string"
+        "files": {
+          "type": "object",
+          "additionalProperties": {
+            "$ref": "#/definitions/config"
           }
-        }
-      },
-      "required": [
-        "presets"
-      ]
-    },
-    "extends": {
-      "properties": {
-        "extends": {
-          "type": "string"
-        }
-      },
-      "required": [
-        "extends"
-      ]
-    },
-    "overrides": {
-      "properties": {
-        "overrides": {
-          "$ref": "./tsconfig.json"
         }
       }
     }
   },
-  "allOf": [
-    { "$ref": "#/definitions/overrides" },
+  "anyOf": [
     {
-      "anyOf": [
-        { 
-          "oneOf": [
-            { "$ref": "#/definitions/preset" },
-            { "$ref": "#/definitions/presets" }
-          ]
-        },
-        { "$ref": "#/definitions/extends" }
-      ]
+      "$ref": "#/definitions/config"
+    },
+    {
+      "$ref": "#/definitions/configs"
     }
   ]
 }

@@ -1,6 +1,9 @@
 {
   "title": "Workspace Root Config",
   "definitions": {
+    "tsconfig": {
+      "type": "object"
+    },
     "required": {
       "properties": {
         "baseConfig": {
@@ -12,23 +15,45 @@
       ]
     },
     "optional": {
-      "type": "object",
       "properties": {
         "overrides": {
-          "$ref": "./tsconfig.json",
-          "additionalProperties": false
+          "$ref": "#/definitions/tsconfig"
         },
         "presets": {
           "type": "object",
           "additionalProperties": {
-            "$ref": "./tsconfig.json"
+            "$ref": "#/definitions/tsconfig"
           }
         }
       }
+    },
+    "configs": {
+      "properties": {
+        "files": {
+          "type": "object",
+          "additionalProperties": {
+            "$ref": "./config.json"
+          }
+        }
+      }
+    },
+    "config": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/required"
+        },
+        {
+          "$ref": "#/definitions/optional"
+        }
+      ]
     }
   },
   "allOf": [
-    { "$ref": "#/definitions/required" },
-    { "$ref": "#/definitions/optional" }
+    {
+      "$ref": "#/definitions/configs"
+    },
+    {
+      "$ref": "#/definitions/config"
+    }
   ]
 }

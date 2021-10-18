@@ -20,15 +20,15 @@ export class RepoCommand extends Command {
   @Command.Path(...commandPath)
   async execute() {
     const rootDir = await root.value;
-    const list = await generateTsConfigs();
     const config = await repoConfig.value;
+    const list = await generateTsConfigs(config);
     const rootExtra = {
       extends: normalizePath(rootDir, config.baseConfig),
     };
     list.forEach(
       ({ path: p, isRoot, content }) => {
         const conf = isRoot
-          ? merge(content, rootExtra)
+          ? merge(rootExtra, content)
           : content;
         fs.writeFileSync(
           p,

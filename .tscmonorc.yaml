@@ -14,3 +14,15 @@ presets:
   json: 
     include: 
       - 'src/**/*.json'
+  esm: 
+    compilerOptions:
+      module: ESNext
+      target: ESNext
+      outDir: esm
+      tsBuildInfoFile: 'esm/.tsbuildinfo'
+  common:
+    compilerOptions:             
+      target: ES2015               
+      module: CommonJS
+      outDir: commonjs
+      tsBuildInfoFile: 'common/.tsbuildinfo'

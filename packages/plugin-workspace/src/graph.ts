@@ -6,11 +6,11 @@ import {
   normalizePath,
 } from '@tscmono/utils';
 import {
-  repoConfig,
+  repoConfig, resolveTsConfig,
 } from '@tscmono/plugin-repo';
 import merge from 'ts-deepmerge';
 
-import { WorkspaceRootConfig } from '@tscmono/config/types/root';
+import { WorkspaceRootConfig, TSConfigCustomConfig } from '@tscmono/config/types/root';
 import { WorkspaceConfig } from '@tscmono/utils/src/types/WorkspaceConfig';
 
 // @ts-ignore
@@ -36,6 +36,35 @@ type TSConfigTemplate = {
   content: any & { references: {path: string}[] },
 };
 
+const getConfigExtras = (
+  rootDir: string,
+  rootConfig: WorkspaceRootConfig,
+  pkgPath: string,
+  customName?: string,
+) => {
+  const tsConfigName = customName
+    ? `tsconfig.${customName}.json`
+    : 'tsconfig.json';
+
+  const rootExtra = {
+    extends: customName
+      ? './tsconfig.json'
+      : normalizePath(
+        rootDir,
+        rootConfig.baseConfig,
+        pkgPath,
+      ),
+  };
+  const tsConfigPath = path.resolve(
+    pkgPath,
+    tsConfigName,
+  );
+  return {
+    extra: rootExtra,
+    path: tsConfigPath,
+  };
+};
+
 /**
  * Generate a [[TSConfigTemplate]] for a specific
  * workspace, given the root configuration, base
@@ -53,54 +82,64 @@ export const packageToTsConfig = async (
   rootDir: string,
   tpl: any,
   pkgList: Record<string, WorkspaceConfig>,
-): Promise<TSConfigTemplate> => {
+): Promise<TSConfigTemplate[]> => {
   const pkgPath = path.resolve(
     rootDir,
     pkg.location,
   );
-  const rootExtra = {
-    extends: normalizePath(
-      rootDir,
-      rootConfig.baseConfig,
-      pkgPath,
-    ),
-  };
-  const tsConfigPath = path.resolve(
-    pkgPath,
-    'tsconfig.json',
-  );
   const conf = await getConfig(pkgPath);
-  let extendedConf: any;
-  if (conf.preset) {
-    extendedConf = rootConfig.presets?.[conf.preset as string] ?? undefined;
-  } else if (conf.presets) {
-    extendedConf = (conf.presets as string[]).reduce(
-      (prev: any, it: string) => merge(
-        prev,
-        rootConfig.presets?.[it] ?? undefined,
-      ),
-      {},
-    );
-  } else if (conf.extends) {
-    extendedConf = {
-      extends: conf.extends as string,
-    };
-  }
+  const { path: tsConfigPath, extra: rootExtra } = getConfigExtras(
+    rootDir,
+    rootConfig,
+    pkgPath,
+  );
+  const customConfigs: any[] = [];
+  const extendedConf = resolveTsConfig(rootConfig, conf as TSConfigCustomConfig);
   const references = pkg.workspaceDependencies
     .map((it) => path.resolve(rootDir, pkgList[it].location))
     .map((location) => ({
       path: path.relative(pkgPath, location),
     }));
-  return {
-    path: tsConfigPath,
-    content: merge(...[
-      rootExtra,
-      tpl,
-      conf.overrides || {},
-      extendedConf,
-      { references },
-    ].filter(Boolean)),
-  };
+  if (rootConfig.files) {
+    Object.entries(rootConfig.files).forEach(
+      ([file, c]) => {
+        const config = resolveTsConfig(rootConfig, c);
+        let extra;
+        const extraConfig = (conf.files as any)?.[file];
+        if (extraConfig) {
+          extra = resolveTsConfig(rootConfig, extraConfig);
+        }
+        const { path: p, extra: confExtra } = getConfigExtras(
+          rootDir,
+          rootConfig,
+          pkgPath,
+          file,
+        );
+        customConfigs.push({
+          path: p,
+          content: merge(...[
+            extra,
+            { extends: tsConfigPath },
+            confExtra,
+            config,
+            { references },
+          ].filter(Boolean)),
+        });
+      },
+    );
+  }
+  return [
+    {
+      path: tsConfigPath,
+      content: merge(...[
+        rootExtra,
+        tpl,
+        extendedConf,
+        { references },
+      ].filter(Boolean)),
+    },
+    ...customConfigs,
+  ];
 };
 
 /**
@@ -110,7 +149,7 @@ export const packageToTsConfig = async (
  */
 export const generateTsConfigs = async (
   rootDir: string = process.cwd(),
-) => {
+): Promise<TSConfigTemplate[]> => {
   debug('Starting tsconfigs generation');
   const workspaceRoot = rootDir
     ? await root.refresh(rootDir)
@@ -121,7 +160,7 @@ export const generateTsConfigs = async (
   const rootConfig: WorkspaceRootConfig = rootDir
     ? await repoConfig.refresh(rootDir)
     : await repoConfig.value;
-  return Promise.all(
+  const result = await Promise.all(
     Object.values(packages).map(
       (pkg) => packageToTsConfig(
         pkg,
@@ -132,4 +171,5 @@ export const generateTsConfigs = async (
       ),
     ),
   );
+  return result.flat(Infinity) as TSConfigTemplate[];
 };

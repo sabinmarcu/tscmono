@@ -1,4 +1,4 @@
-#!/usr/local/env node
+#!/usr/bin/env node
 
 require(
   require('path').resolve(__dirname, '../dist/index'),

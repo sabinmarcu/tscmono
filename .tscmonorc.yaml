@@ -25,4 +25,4 @@ presets:
       target: ES2015               
       module: CommonJS
       outDir: commonjs
-      tsBuildInfoFile: 'common/.tsbuildinfo'
+      tsBuildInfoFile: 'commonjs/.tsbuildinfo'

@@ -1,0 +1,11 @@
+releases:
+  "@tscmono/cli": patch
+  "@tscmono/config": patch
+  "@tscmono/plugin-repo": minor
+  "@tscmono/plugin-workspace": minor
+  "@tscmono/preset-default": patch
+  "@tscmono/utils": patch
+
+declined:
+  - "@tscmono/root"
+  - "@tscmono/website"

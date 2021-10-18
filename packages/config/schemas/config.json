@@ -1,0 +1,63 @@
+{
+  "title": "TSConfig Custom Config",
+  "definitions": {
+    "tsconfig": {
+      "$ref": "./tsconfig.json"
+    },
+    "preset": {
+      "properties": {
+        "preset": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "preset"
+      ]
+    },
+    "presets": {
+      "properties": {
+        "presets": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "required": [
+        "presets"
+      ]
+    },
+    "extends": {
+      "properties": {
+        "extends": {
+          "type": "string"
+        }
+      }
+    },
+    "overrides": {
+      "properties": {
+        "overrides": {
+          "$ref": "#/definitions/tsconfig"
+        }
+      }
+    }
+  },
+  "allOf": [
+    {
+      "$ref": "#/definitions/overrides"
+    },
+    {
+      "oneOf": [
+        {
+          "$ref": "#/definitions/preset"
+        },
+        {
+          "$ref": "#/definitions/presets"
+        }
+      ]
+    },
+    {
+      "$ref": "#/definitions/extends"
+    }
+  ]
+}

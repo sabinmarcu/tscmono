@@ -5,16 +5,8 @@
  * and run json-schema-to-typescript to regenerate this file.
  */
 
-export type JSONSchemaForTheTypeScriptCompilerSConfigurationFile = CompilerOptionsDefinition &
-  CompileOnSaveDefinition &
-  TypeAcquisitionDefinition &
-  ExtendsDefinition &
-  WatchOptionsDefinition &
-  BuildOptionsDefinition &
-  TsNodeDefinition &
-  (FilesDefinition | ExcludeDefinition | IncludeDefinition | ReferencesDefinition);
-
-export interface CompilerOptionsDefinition {
+export type TSConfigCustomConfig = Overrides & (Preset | Presets) & Extends;
+export type JSONSchemaForTheTypeScriptCompilerSConfigurationFile = {
   /**
    * Instructs the TypeScript compiler how to compile .ts files.
    */
@@ -591,15 +583,13 @@ export interface CompilerOptionsDefinition {
     [k: string]: unknown;
   };
   [k: string]: unknown;
-}
-export interface CompileOnSaveDefinition {
+} & {
   /**
    * Enable Compile-on-Save for this project.
    */
   compileOnSave?: boolean;
   [k: string]: unknown;
-}
-export interface TypeAcquisitionDefinition {
+} & {
   /**
    * Auto type (.d.ts) acquisition options for this project. Requires TypeScript version 2.1 or later.
    */
@@ -619,15 +609,13 @@ export interface TypeAcquisitionDefinition {
     [k: string]: unknown;
   };
   [k: string]: unknown;
-}
-export interface ExtendsDefinition {
+} & {
   /**
    * Path to base configuration file to inherit from. Requires TypeScript version 2.1 or later.
    */
   extends?: string;
   [k: string]: unknown;
-}
-export interface WatchOptionsDefinition {
+} & {
   /**
    * Settings for the watch mode in TypeScript.
    */
@@ -663,8 +651,7 @@ export interface WatchOptionsDefinition {
     [k: string]: unknown;
   };
   [k: string]: unknown;
-}
-export interface BuildOptionsDefinition {
+} & {
   buildOptions?: {
     /**
      * ~
@@ -693,8 +680,7 @@ export interface BuildOptionsDefinition {
     [k: string]: unknown;
   };
   [k: string]: unknown;
-}
-export interface TsNodeDefinition {
+} & {
   /**
    * ts-node options.  See also: https://typestrong.org/ts-node/docs/configuration
    *
@@ -1408,38 +1394,56 @@ export interface TsNodeDefinition {
     [k: string]: unknown;
   };
   [k: string]: unknown;
-}
-export interface FilesDefinition {
-  /**
-   * If no 'files' or 'include' property is present in a tsconfig.json, the compiler defaults to including all files in the containing directory and subdirectories except those specified by 'exclude'. When a 'files' property is specified, only those files and those specified by 'include' are included.
-   */
-  files?: string[];
+} & (
+    | {
+        /**
+         * If no 'files' or 'include' property is present in a tsconfig.json, the compiler defaults to including all files in the containing directory and subdirectories except those specified by 'exclude'. When a 'files' property is specified, only those files and those specified by 'include' are included.
+         */
+        files?: string[];
+        [k: string]: unknown;
+      }
+    | {
+        /**
+         * Specifies a list of files to be excluded from compilation. The 'exclude' property only affects the files included via the 'include' property and not the 'files' property. Glob patterns require TypeScript version 2.0 or later.
+         */
+        exclude?: string[];
+        [k: string]: unknown;
+      }
+    | {
+        /**
+         * Specifies a list of glob patterns that match files to be included in compilation. If no 'files' or 'include' property is present in a tsconfig.json, the compiler defaults to including all files in the containing directory and subdirectories except those specified by 'exclude'. Requires TypeScript version 2.0 or later.
+         */
+        include?: string[];
+        [k: string]: unknown;
+      }
+    | {
+        /**
+         * Referenced projects. Requires TypeScript version 3.0 or later.
+         */
+        references?: {
+          /**
+           * Path to referenced tsconfig or to folder containing tsconfig.
+           */
+          path?: string;
+          [k: string]: unknown;
+        }[];
+        [k: string]: unknown;
+      }
+  );
+
+export interface Overrides {
+  overrides?: JSONSchemaForTheTypeScriptCompilerSConfigurationFile;
   [k: string]: unknown;
 }
-export interface ExcludeDefinition {
-  /**
-   * Specifies a list of files to be excluded from compilation. The 'exclude' property only affects the files included via the 'include' property and not the 'files' property. Glob patterns require TypeScript version 2.0 or later.
-   */
-  exclude?: string[];
+export interface Preset {
+  preset: string;
   [k: string]: unknown;
 }
-export interface IncludeDefinition {
-  /**
-   * Specifies a list of glob patterns that match files to be included in compilation. If no 'files' or 'include' property is present in a tsconfig.json, the compiler defaults to including all files in the containing directory and subdirectories except those specified by 'exclude'. Requires TypeScript version 2.0 or later.
-   */
-  include?: string[];
+export interface Presets {
+  presets: string[];
   [k: string]: unknown;
 }
-export interface ReferencesDefinition {
-  /**
-   * Referenced projects. Requires TypeScript version 3.0 or later.
-   */
-  references?: {
-    /**
-     * Path to referenced tsconfig or to folder containing tsconfig.
-     */
-    path?: string;
-    [k: string]: unknown;
-  }[];
+export interface Extends {
+  extends?: string;
   [k: string]: unknown;
 }

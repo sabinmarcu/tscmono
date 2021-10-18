@@ -30,6 +30,12 @@ const resolveRef = (
   return paths.filter((it) => fs.existsSync(it))?.[0] ?? undefined;
 };
 
+type SubschemaResolutionType = {
+  path: string,
+  schema: JSONSchema,
+  resolution: JSONSchema
+};
+
 /**
  * Obtain a list of sub-schemas (referenced schemas) from a given schema
  * @param schema Schema to be parsed
@@ -39,7 +45,7 @@ const resolveRef = (
 const getSubSchemas = (
   schema: Partial<JSONSchema>,
   rootDir: string,
-): { path: string, schema: JSONSchema }[] => {
+): SubschemaResolutionType[] => {
   if (!schema || typeof schema === 'string') {
     return [];
   }
@@ -48,17 +54,33 @@ const getSubSchemas = (
     const id = `/${nanoid()}`;
     // eslint-disable-next-line no-param-reassign
     schema.$ref = id;
+    const resolvedSchema = deepCopy(require(schemaPath));
     return [{
       path: id,
       schema: {
-        ...require(schemaPath),
+        ...resolvedSchema,
         id,
       },
+      resolution: resolvedSchema,
     }];
   }
   return Object.values(schema).map(
     (subSchema) => getSubSchemas(subSchema, rootDir),
   ).flat();
+};
+
+const resolveSubSchemas = (
+  schemaCopy: Partial<JSONSchema>,
+  repoRoot: string,
+  validator: Validator,
+) => {
+  const subSchemas = getSubSchemas(schemaCopy, repoRoot);
+  subSchemas.forEach(
+    ({ path: p, schema: s }) => validator.addSchema(s, p),
+  );
+  subSchemas.forEach(
+    ({ resolution }) => resolveSubSchemas(resolution, repoRoot, validator),
+  );
 };
 
 /**
@@ -85,10 +107,7 @@ export const loadConfig = async <T>(
   }
   debug('Config found');
   const validator = new Validator();
-  const subSchemas = getSubSchemas(schemaCopy, repoRoot);
-  subSchemas.forEach(
-    ({ path: p, schema: s }) => validator.addSchema(s, p),
-  );
+  resolveSubSchemas(schemaCopy, repoRoot, validator);
   const validateResult = validator.validate(output.config, schemaCopy);
   const isValid = validateResult.valid;
   if (!isValid) {

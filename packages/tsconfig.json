@@ -6,25 +6,25 @@
   "files": [],
   "references": [
     {
-      "path": "./cli"
+      "path": "./cli/tsconfig.json"
     },
     {
-      "path": "./config"
+      "path": "./config/tsconfig.json"
     },
     {
-      "path": "./plugin-repo"
+      "path": "./plugin-repo/tsconfig.json"
     },
     {
-      "path": "./plugin-workspace"
+      "path": "./plugin-workspace/tsconfig.json"
     },
     {
-      "path": "./preset-default"
+      "path": "./preset-default/tsconfig.json"
     },
     {
-      "path": "./utils"
+      "path": "./utils/tsconfig.json"
     },
     {
-      "path": "./website"
+      "path": "./website/tsconfig.json"
     }
   ]
 }

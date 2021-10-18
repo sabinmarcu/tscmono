@@ -8,3 +8,5 @@ if [ "$branch" = "master" ] || [ "$branch" = "staging" ]; then
   echo "You can't push to master"
   exit 1
 fi
+
+yarn version check

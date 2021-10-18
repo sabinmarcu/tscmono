@@ -4,9 +4,10 @@ import {
   root,
   workspaces,
   normalizePath,
+  makeTsConfigFileName,
 } from '@tscmono/utils';
 import {
-  repoConfig, resolveTsConfig,
+  repoConfig,
 } from '@tscmono/plugin-repo';
 import merge from 'ts-deepmerge';
 
@@ -36,15 +37,48 @@ type TSConfigTemplate = {
   content: any & { references: {path: string}[] },
 };
 
+export const resolvePreset = (
+  rootConfig: WorkspaceRootConfig,
+  preset: string,
+): any => {
+  if (!rootConfig.presets) {
+    throw new Error('No presets defined in root config!');
+  }
+  if (!(preset in rootConfig.presets)) {
+    throw new Error(`Preset ${preset} not found in root config!`);
+  }
+  return rootConfig.presets[preset];
+};
+
+export const resolveTsConfig = (
+  rootConfig: WorkspaceRootConfig,
+  config: TSConfigCustomConfig,
+): any => {
+  const toMerge = [];
+  if (config.overrides) {
+    toMerge.push(config.overrides);
+  }
+  if (config.preset) {
+    toMerge.push(resolvePreset(rootConfig, config.preset as string));
+  }
+  if (config.presets) {
+    (config.presets as string[]).forEach(
+      (preset: string) => toMerge.push(resolvePreset(rootConfig, preset)),
+    );
+  }
+  if (config.extends) {
+    toMerge.push({ extends: config.extends });
+  }
+  return merge(...toMerge);
+};
+
 const getConfigExtras = (
   rootDir: string,
   rootConfig: WorkspaceRootConfig,
   pkgPath: string,
   customName?: string,
 ) => {
-  const tsConfigName = customName
-    ? `tsconfig.${customName}.json`
-    : 'tsconfig.json';
+  const tsConfigName = makeTsConfigFileName(customName);
 
   const rootExtra = {
     extends: customName

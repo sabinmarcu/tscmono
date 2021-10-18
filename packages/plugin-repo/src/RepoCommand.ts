@@ -1,10 +1,15 @@
 import path from 'path';
 import fs from 'fs';
 import { Command } from 'clipanion';
-import { root, normalizePath } from '@tscmono/utils';
+import { root, normalizePath, makeLogger } from '@tscmono/utils';
 import merge from 'ts-deepmerge';
 import { repoConfig } from './config';
 import { generateTsConfigs } from './tree';
+
+/**
+ * @ignore
+ */
+const debug = makeLogger(__filename);
 
 /**
  * Command path of the [[RepoCommand]]
@@ -30,6 +35,7 @@ export class RepoCommand extends Command {
         const conf = isRoot
           ? merge(rootExtra, content)
           : content;
+        debug('Emitting', p);
         fs.writeFileSync(
           p,
           JSON.stringify({

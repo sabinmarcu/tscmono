@@ -29,3 +29,15 @@ export const normalizePath = (
   }
   return newPath;
 };
+
+export type TsConfigFileName<T extends any> =
+  T extends string
+    ? `tsconfig.${T}.json`
+    : 'tsconfig.json';
+
+export const makeTsConfigFileName = <T extends string | undefined>(
+  name?: T,
+): TsConfigFileName<T> => (name
+    ? `tsconfig.${name}.json`
+    : 'tsconfig.json'
+  ) as TsConfigFileName<T>;

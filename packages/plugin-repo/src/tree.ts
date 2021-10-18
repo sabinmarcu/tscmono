@@ -1,6 +1,7 @@
 import path from 'path';
 import {
   makeLogger,
+  makeTsConfigFileName,
   parseWorkspaces,
   pathsToTree,
   registerCache,
@@ -67,41 +68,6 @@ type TSConfigTemplate = {
   isRoot: boolean,
 };
 
-export const resolvePreset = (
-  rootConfig: WorkspaceRootConfig,
-  preset: string,
-): any => {
-  if (!rootConfig.presets) {
-    throw new Error('No presets defined in root config!');
-  }
-  if (!(preset in rootConfig.presets)) {
-    throw new Error(`Preset ${preset} not found in root config!`);
-  }
-  return rootConfig.presets[preset];
-};
-
-export const resolveTsConfig = (
-  rootConfig: WorkspaceRootConfig,
-  config: TSConfigCustomConfig,
-): any => {
-  const toMerge = [];
-  if (config.overrides) {
-    toMerge.push(config.overrides);
-  }
-  if (config.preset) {
-    toMerge.push(resolvePreset(rootConfig, config.preset as string));
-  }
-  if (config.presets) {
-    (config.presets as string[]).forEach(
-      (preset: string) => toMerge.push(resolvePreset(rootConfig, preset)),
-    );
-  }
-  if (config.extends) {
-    toMerge.push({ extends: config.extends });
-  }
-  return merge(...toMerge);
-};
-
 /**
  * Convert a single [[TreeNode]] instance to a [[TSConfigTemplate]], given the
  * project path, and a template to be used. It will only generate the template for
@@ -115,14 +81,31 @@ export const treeNodeToTSConfig = (
   projectPath: string,
   tree: TreeNode,
   tpl: any,
+  rootConfig: WorkspaceRootConfig,
   fileCfg?: [string, TSConfigCustomConfig],
 ): TSConfigTemplate => {
   const [fName] = fileCfg || [];
-  const fileName = fName
-    ? `tsconfig.${fName}.json`
-    : 'tsconfig.json';
+  const fileName = makeTsConfigFileName(fName);
 
   const isRoot = tree.path === '';
+
+  let references: any[];
+  if (!fName && isRoot && !!rootConfig.files) {
+    references = Object.keys(rootConfig.files)
+      .map((it) => ({
+        path: path.resolve(
+          projectPath,
+          tree.path,
+          makeTsConfigFileName(it),
+        ),
+      }));
+  } else {
+    references = Object.values(tree.children).map(
+      (node) => (typeof node === 'string'
+        ? path.resolve(projectPath, node)
+        : path.resolve(projectPath, node.path)),
+    ).map((it) => ({ path: path.resolve(it, fileName) }));
+  }
 
   return ({
     path: path.resolve(projectPath, tree.path, fileName),
@@ -130,11 +113,7 @@ export const treeNodeToTSConfig = (
     content: merge(
       tpl,
       {
-        references: Object.values(tree.children).map(
-          (node) => (typeof node === 'string'
-            ? path.resolve(projectPath, node)
-            : path.resolve(projectPath, node.path)),
-        ).map((it) => ({ path: path.resolve(it, fileName) })),
+        references,
       },
     ),
   });
@@ -155,7 +134,7 @@ export const reduceTreeNodeToTSConfigList = (
   rootConfig: WorkspaceRootConfig,
   tpl: any,
 ): TSConfigTemplate[] | undefined => {
-  const currentTemplate = treeNodeToTSConfig(projectPath, tree, tpl);
+  const currentTemplate = treeNodeToTSConfig(projectPath, tree, tpl, rootConfig);
   const extraTemplates: TSConfigTemplate[] = [];
   if (rootConfig.files) {
     Object.entries(rootConfig.files).forEach(
@@ -165,6 +144,7 @@ export const reduceTreeNodeToTSConfigList = (
             projectPath,
             tree,
             tpl,
+            rootConfig,
             fileSet as [string, TSConfigCustomConfig],
           ),
         );
@@ -184,8 +164,15 @@ export const reduceTreeNodeToTSConfigList = (
       );
     },
   ).flat().filter(Boolean) as TSConfigTemplate[];
+  const isRoot = tree.path === '';
+  if (isRoot) {
+    return [
+      currentTemplate,
+      ...extraTemplates,
+      ...childTemplates,
+    ];
+  }
   return [
-    currentTemplate,
     ...extraTemplates,
     ...childTemplates,
   ];

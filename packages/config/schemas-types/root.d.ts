@@ -1459,12 +1459,9 @@ export interface Required {
   [k: string]: unknown;
 }
 export interface Optional {
-  overrides?: Tsconfig;
+  overrides?: JSONSchemaForTheTypeScriptCompilerSConfigurationFile;
   presets?: {
-    [k: string]: Tsconfig;
+    [k: string]: JSONSchemaForTheTypeScriptCompilerSConfigurationFile;
   };
-  [k: string]: unknown;
-}
-export interface Tsconfig {
   [k: string]: unknown;
 }

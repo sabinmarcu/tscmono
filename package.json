@@ -20,7 +20,7 @@
     "docs:dev:docs": "nodemon -e ts,hbs,md -x yarn docs",
     "docs:dev:serve": "serve docs",
     "build-packages": "yarn workspaces foreach --exclude @tscmono/website -vpitA run build",
-    "build": "tsc -b",
+    "build": "tsc -b || yarn build:init",
     "build:dev": "tsc -b --watch",
     "build:init": "tsc -b tsconfig.init.json",
     "dev": "yarn workspaces foreach --exclude @tscmono/website -vpiA run build:dev",

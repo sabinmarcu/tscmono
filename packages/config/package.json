@@ -30,7 +30,7 @@
     "ts-node": "^9.1.1"
   },
   "scripts": {
-    "build": "json2ts -i schemas/ -o types/ --cwd schemas",
+    "build": "json2ts -i schemas/ -o types/ --cwd schemas-types",
     "build:dev": "nodemon -e json -x 'yarn build'"
   },
   "publishConfig": {
@@ -41,7 +41,7 @@
     "overrides": {
       "include": [
         "src",
-        "types"
+        "schema-types"
       ]
     }
   }

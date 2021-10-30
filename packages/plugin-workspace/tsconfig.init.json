@@ -8,7 +8,8 @@
     "tsBuildInfoFile": "dist/.tsbuildinfo"
   },
   "include": [
-    "src/**/*"
+    "src/**/*",
+    "src/**/*.json"
   ],
   "exclude": [
     "src/**.spec.ts",
@@ -16,10 +17,13 @@
   ],
   "references": [
     {
-      "path": "../plugin-repo"
+      "path": "../config/tsconfig.json"
     },
     {
-      "path": "../plugin-workspace"
+      "path": "../plugin-repo/tsconfig.json"
+    },
+    {
+      "path": "../utils/tsconfig.json"
     }
   ]
 }

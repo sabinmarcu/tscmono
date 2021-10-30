@@ -2,7 +2,7 @@
   "title": "Workspace Root Config",
   "definitions": {
     "tsconfig": {
-      "type": "object"
+      "$ref": "./tsconfig.json"
     },
     "required": {
       "properties": {

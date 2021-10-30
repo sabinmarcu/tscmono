@@ -9,7 +9,9 @@
     "tests/*"
   ],
   "scripts": {
-    "postinstall": "is-ci || husky install",
+    "postinstall": "run-s \"postinstall:*\"",
+    "postinstall:husky": "is-ci || husky install",
+    "postinstall:build": "yarn build:init",
     "docs": "yarn typedoc",
     "docs:dev": "run-p \"docs:dev:*\"",
     "docs:prod": "run-s \"docs:prod:*\"",
@@ -20,6 +22,7 @@
     "build-packages": "yarn workspaces foreach --exclude @tscmono/website -vpitA run build",
     "build": "tsc -b",
     "build:dev": "tsc -b --watch",
+    "build:init": "tsc -b tsconfig.init.json",
     "dev": "yarn workspaces foreach --exclude @tscmono/website -vpiA run build:dev",
     "publish-packages": "run-s \"publish:*\"",
     "publish:apply": "yarn version apply --all",

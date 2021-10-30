@@ -1,3 +1,4 @@
+# yaml-language-server: $schema=packages/config/schemas/root.json
 baseConfig: ./tsconfig.base.json
 presets: 
   default: 
@@ -21,8 +22,24 @@ presets:
       outDir: esm
       tsBuildInfoFile: 'esm/.tsbuildinfo'
   common:
-    compilerOptions:             
+    compilerOptions:
       target: ES2015               
       module: CommonJS
       outDir: commonjs
       tsBuildInfoFile: 'commonjs/.tsbuildinfo'
+  type:
+    compilerOptions:
+      outDir: types
+      tsBuildInfoFile: 'types/.tsbuildinfo'
+      emitDeclarationOnly: true
+
+
+# files:
+#   esm: 
+#     preset: esm
+#   common: 
+#     preset: common
+#   type: 
+#     preset: type
+#   default:
+#     preset: default

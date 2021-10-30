@@ -11,7 +11,7 @@ import {
 } from '@tscmono/plugin-repo';
 import merge from 'ts-deepmerge';
 
-import { WorkspaceRootConfig, TSConfigCustomConfig } from '@tscmono/config/types/root';
+import { WorkspaceRootConfig, TSConfigCustomConfig } from '@tscmono/config/schemas-types/root';
 import { WorkspaceConfig } from '@tscmono/utils/src/types/WorkspaceConfig';
 
 // @ts-ignore
@@ -81,13 +81,11 @@ const getConfigExtras = (
   const tsConfigName = makeTsConfigFileName(customName);
 
   const rootExtra = {
-    extends: customName
-      ? './tsconfig.json'
-      : normalizePath(
-        rootDir,
-        rootConfig.baseConfig,
-        pkgPath,
-      ),
+    extends: normalizePath(
+      rootDir,
+      rootConfig.baseConfig,
+      pkgPath,
+    ),
   };
   const tsConfigPath = path.resolve(
     pkgPath,
@@ -132,7 +130,10 @@ export const packageToTsConfig = async (
   const references = pkg.workspaceDependencies
     .map((it) => path.resolve(rootDir, pkgList[it].location))
     .map((location) => ({
-      path: path.relative(pkgPath, location),
+      path: path.relative(
+        pkgPath,
+        path.resolve(location, 'tsconfig.json'),
+      ),
     }));
   if (rootConfig.files) {
     Object.entries(rootConfig.files).forEach(
@@ -149,18 +150,32 @@ export const packageToTsConfig = async (
           pkgPath,
           file,
         );
+        const localReferences = references.map(({ path: rp }) => {
+          const rpa = rp.split('/');
+          const fn = p.split('/').slice(-1)[0];
+          rpa.splice(-1, 1, fn);
+          return {
+            path: rpa.join('/'),
+          };
+        });
         customConfigs.push({
           path: p,
           content: merge(...[
+            rootExtra,
+            tpl,
+            extendedConf,
             extra,
             { extends: tsConfigPath },
             confExtra,
             config,
-            { references },
+            { references: localReferences },
           ].filter(Boolean)),
         });
       },
     );
+  }
+  if (customConfigs.length) {
+    return customConfigs;
   }
   return [
     {
@@ -172,7 +187,6 @@ export const packageToTsConfig = async (
         { references },
       ].filter(Boolean)),
     },
-    ...customConfigs,
   ];
 };
 

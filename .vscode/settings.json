@@ -6,11 +6,9 @@
   "typescript.tsdk": ".yarn/sdks/typescript/lib",
   "typescript.enablePromptUseWorkspaceTsdk": true,
   "editor.defaultFormatter": "dbaeumer.vscode-eslint",
-  "jest.pathToJest": "yarn test",
+  "jest.jestCommandLine": "yarn test",
   "[javascript]": {
     "editor.defaultFormatter": "dbaeumer.vscode-eslint"
   },
-  "eslint.nodePath": ".yarn/sdks",
-  "coverage-gutters.coverageBaseDir": "coverage",
-  "coverage-gutters.xmlname": "clover.xml"
+  "eslint.nodePath": ".yarn/sdks"
 }

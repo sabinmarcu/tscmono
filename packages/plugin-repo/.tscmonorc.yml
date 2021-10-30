@@ -1,3 +1,4 @@
+# yaml-language-server: $schema=../config/schemas/workspace.json
 presets: 
   - default
   - json

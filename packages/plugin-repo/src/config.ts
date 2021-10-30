@@ -1,6 +1,6 @@
 import { loadConfig, JSONSchema } from '@tscmono/config';
 import repoSchema from '@tscmono/config/schemas/root.json';
-import type { WorkspaceRootConfig } from '@tscmono/config/types/root';
+import type { WorkspaceRootConfig } from '@tscmono/config/schemas-types/root';
 import { registerCache } from '@tscmono/utils';
 
 /**

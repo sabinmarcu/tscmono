@@ -8,8 +8,9 @@
     "tsBuildInfoFile": "dist/.tsbuildinfo"
   },
   "include": [
-    "src/**/*",
-    "src/**/*.json"
+    "src",
+    "schema-types",
+    "src/**/*"
   ],
   "exclude": [
     "src/**.spec.ts",
@@ -17,13 +18,7 @@
   ],
   "references": [
     {
-      "path": "../config"
-    },
-    {
-      "path": "../plugin-repo"
-    },
-    {
-      "path": "../utils"
+      "path": "../utils/tsconfig.json"
     }
   ]
 }

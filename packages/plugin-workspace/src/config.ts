@@ -1,6 +1,6 @@
 import { loadConfig, JSONSchema } from '@tscmono/config';
 import workspaceSchema from '@tscmono/config/schemas/workspace.json';
-import type { WorkspaceConfig } from '@tscmono/config/types/workspace';
+import type { WorkspaceConfig } from '@tscmono/config/schemas-types/workspace';
 
 /**
  * Obtain the monorepo `tscmono` config using cosmiconfig

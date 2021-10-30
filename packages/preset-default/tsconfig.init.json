@@ -16,7 +16,10 @@
   ],
   "references": [
     {
-      "path": "../utils"
+      "path": "../plugin-repo/tsconfig.json"
+    },
+    {
+      "path": "../plugin-workspace/tsconfig.json"
     }
   ]
 }

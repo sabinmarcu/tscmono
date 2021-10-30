@@ -165,14 +165,14 @@ export const reduceTreeNodeToTSConfigList = (
     },
   ).flat().filter(Boolean) as TSConfigTemplate[];
   const isRoot = tree.path === '';
-  if (isRoot) {
+  if (rootConfig.files && !isRoot) {
     return [
-      currentTemplate,
       ...extraTemplates,
       ...childTemplates,
     ];
   }
   return [
+    currentTemplate,
     ...extraTemplates,
     ...childTemplates,
   ];

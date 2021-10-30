@@ -16,10 +16,10 @@
   ],
   "references": [
     {
-      "path": "../plugin-repo/tsconfig.json"
+      "path": "../plugin-repo/tsconfig.init.json"
     },
     {
-      "path": "../plugin-workspace/tsconfig.json"
+      "path": "../plugin-workspace/tsconfig.init.json"
     }
   ]
 }

@@ -17,13 +17,13 @@
   ],
   "references": [
     {
-      "path": "../config/tsconfig.json"
+      "path": "../config/tsconfig.init.json"
     },
     {
-      "path": "../plugin-repo/tsconfig.json"
+      "path": "../plugin-repo/tsconfig.init.json"
     },
     {
-      "path": "../utils/tsconfig.json"
+      "path": "../utils/tsconfig.init.json"
     }
   ]
 }

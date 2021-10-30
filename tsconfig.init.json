@@ -7,7 +7,7 @@
   "files": [],
   "references": [
     {
-      "path": "./packages/tsconfig.json"
+      "path": "./packages/tsconfig.init.json"
     }
   ]
 }

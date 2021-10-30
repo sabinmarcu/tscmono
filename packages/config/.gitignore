@@ -1,2 +1,3 @@
 !schemas/tsconfig.json
-!types
+!tsconfig.json
+!schemas-types

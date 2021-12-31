@@ -12,5 +12,6 @@
   },
   "eslint.nodePath": ".yarn/sdks",
   "coverage-gutters.coverageBaseDir": "coverage",
-  "coverage-gutters.xmlname": "clover.xml"
+  "coverage-gutters.xmlname": "clover.xml",
+  "jest.jestCommandLine": "yarn test"
 }

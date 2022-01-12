@@ -1,5 +1,6 @@
 # yaml-language-server: $schema=packages/config/schemas/root.json
 baseConfig: ./tsconfig.base.json
+mode: loose
 presets: 
   default: 
     compilerOptions: 

@@ -8,15 +8,16 @@ import {
 } from '@tscmono/utils';
 import {
   repoConfig,
+  getConfig,
 } from '@tscmono/plugin-repo';
 import merge from 'ts-deepmerge';
 
 import { WorkspaceRootConfig, TSConfigCustomConfig } from '@tscmono/config/schemas-types/root';
+import { WorkspaceConfig as WSConfig } from '@tscmono/config/schemas-types/workspace';
 import { WorkspaceConfig } from '@tscmono/utils/src/types/WorkspaceConfig';
 
 // @ts-ignore
 import template from './template.json';
-import { getConfig } from './config';
 
 /**
  * @ignore
@@ -119,14 +120,23 @@ export const packageToTsConfig = async (
     rootDir,
     pkg.location,
   );
-  const conf = await getConfig(pkgPath);
+  let conf: WSConfig;
+  try {
+    conf = await getConfig(pkgPath);
+  } catch (e) {
+    if (rootConfig.mode !== 'loose') {
+      throw e;
+    }
+    return [];
+  }
+
   const { path: tsConfigPath, extra: rootExtra } = getConfigExtras(
     rootDir,
     rootConfig,
     pkgPath,
   );
   const customConfigs: any[] = [];
-  const extendedConf = resolveTsConfig(rootConfig, conf as TSConfigCustomConfig);
+  const extendedConf = resolveTsConfig(rootConfig, conf! as TSConfigCustomConfig);
   const references = pkg.workspaceDependencies
     .map((it) => path.resolve(rootDir, pkgList[it].location))
     .map((location) => ({

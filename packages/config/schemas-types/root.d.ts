@@ -1456,6 +1456,7 @@ export interface Configs {
 }
 export interface Required {
   baseConfig: string;
+  mode?: "loose" | "strict";
   [k: string]: unknown;
 }
 export interface Optional {

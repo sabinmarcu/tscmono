@@ -8,6 +8,13 @@
       "properties": {
         "baseConfig": {
           "type": "string"
+        },
+        "mode": {
+          "type": "string",
+          "enum": [
+            "loose",
+            "strict"
+          ]
         }
       },
       "required": [

@@ -39,8 +39,5 @@
   },
   "devDependencies": {
     "@types/react": "^17.0.0"
-  },
-  "tscmono": {
-    "preset": "default"
   }
 }

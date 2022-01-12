@@ -1,8 +1,6 @@
 import { commandPath, WorkspaceCommand } from './WorkspaceCommand';
 
-export * from './config';
 export * from './graph';
-
 
 /**
  * Define commands exported from this plugin

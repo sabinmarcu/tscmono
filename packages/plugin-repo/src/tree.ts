@@ -11,8 +11,9 @@ import {
 import merge from 'ts-deepmerge';
 
 // @ts-ignore
-import { WorkspaceRootConfig, TSConfigCustomConfig } from '@tscmono/config/types/root';
+import { WorkspaceRootConfig, TSConfigCustomConfig } from '@tscmono/config/schemas-types/root';
 import template from './template.json';
+import { getConfig } from './config';
 
 /**
  * @ignore
@@ -68,6 +69,21 @@ type TSConfigTemplate = {
   isRoot: boolean,
 };
 
+export const validConfig = async (
+  workspacePath: string,
+  rootConfig: WorkspaceRootConfig,
+): Promise<boolean> => {
+  try {
+    await getConfig(workspacePath);
+  } catch (e) {
+    if (rootConfig.mode !== 'loose') {
+      throw e;
+    }
+    return false;
+  }
+  return true;
+};
+
 /**
  * Convert a single [[TreeNode]] instance to a [[TSConfigTemplate]], given the
  * project path, and a template to be used. It will only generate the template for
@@ -77,13 +93,13 @@ type TSConfigTemplate = {
  * @param tpl The template to be used
  * @category TSConfig Generation
  */
-export const treeNodeToTSConfig = (
+export const treeNodeToTSConfig = async (
   projectPath: string,
   tree: TreeNode,
   tpl: any,
   rootConfig: WorkspaceRootConfig,
   fileCfg?: [string, TSConfigCustomConfig],
-): TSConfigTemplate => {
+): Promise<TSConfigTemplate> => {
   const [fName] = fileCfg || [];
   const fileName = makeTsConfigFileName(fName);
 
@@ -100,11 +116,22 @@ export const treeNodeToTSConfig = (
         ),
       }));
   } else {
-    references = Object.values(tree.children).map(
-      (node) => (typeof node === 'string'
-        ? path.resolve(projectPath, node)
-        : path.resolve(projectPath, node.path)),
-    ).map((it) => ({ path: path.resolve(it, fileName) }));
+    references = (await Promise.all(
+      Object.values(tree.children).map(
+        async (node) => {
+          const workspaceRelativePath = typeof node === 'string' ? node : node.path;
+          const workspacePath = path.resolve(projectPath, workspaceRelativePath);
+          const isValid = await validConfig(workspacePath, rootConfig);
+          return {
+            path: workspacePath,
+            valid: isValid,
+          };
+        },
+      ),
+    ))
+      .filter(({ valid }) => valid)
+      .map(({ path: workspacePath }) => workspacePath)
+      .map((it) => ({ path: path.resolve(it, fileName) }));
   }
 
   return ({
@@ -128,42 +155,46 @@ export const treeNodeToTSConfig = (
  * @param tpl
  * @category TSConfig Generation
  */
-export const reduceTreeNodeToTSConfigList = (
+export const reduceTreeNodeToTSConfigList = async (
   projectPath: string,
   tree: TreeNode,
   rootConfig: WorkspaceRootConfig,
   tpl: any,
-): TSConfigTemplate[] | undefined => {
-  const currentTemplate = treeNodeToTSConfig(projectPath, tree, tpl, rootConfig);
+): Promise<TSConfigTemplate[] | undefined> => {
+  const currentTemplate = await treeNodeToTSConfig(projectPath, tree, tpl, rootConfig);
   const extraTemplates: TSConfigTemplate[] = [];
   if (rootConfig.files) {
-    Object.entries(rootConfig.files).forEach(
-      (fileSet) => {
-        extraTemplates.push(
-          treeNodeToTSConfig(
-            projectPath,
-            tree,
-            tpl,
-            rootConfig,
-            fileSet as [string, TSConfigCustomConfig],
-          ),
-        );
-      },
+    await Promise.all(
+      Object.entries(rootConfig.files).map(
+        async (fileSet) => {
+          extraTemplates.push(
+            await treeNodeToTSConfig(
+              projectPath,
+              tree,
+              tpl,
+              rootConfig,
+              fileSet as [string, TSConfigCustomConfig],
+            ),
+          );
+        },
+      ),
     );
   }
-  const childTemplates = Object.values(tree.children).map(
-    (child) => {
-      if (typeof child === 'string') {
-        return undefined;
-      }
-      return reduceTreeNodeToTSConfigList(
-        projectPath,
-        child,
-        rootConfig,
-        tpl,
-      );
-    },
-  ).flat().filter(Boolean) as TSConfigTemplate[];
+  const childTemplates = (await Promise.all(
+    Object.values(tree.children).map(
+      async (child) => {
+        if (typeof child === 'string') {
+          return undefined;
+        }
+        return reduceTreeNodeToTSConfigList(
+          projectPath,
+          child,
+          rootConfig,
+          tpl,
+        );
+      },
+    ),
+  )).flat().filter(Boolean) as TSConfigTemplate[];
   return [
     currentTemplate,
     ...extraTemplates,
@@ -185,7 +216,7 @@ export const generateTsConfigs = async (
     ? await workspaceTree.refresh(rootDir)
     : await workspaceTree.value;
   debug('Generated workspace tree');
-  const tsConfigs = reduceTreeNodeToTSConfigList(
+  const tsConfigs = await reduceTreeNodeToTSConfigList(
     tree.projectRoot,
     tree.tree,
     rootConfig,

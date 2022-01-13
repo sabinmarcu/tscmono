@@ -16,13 +16,13 @@
   ],
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "publishConfig": {
     "access": "public"
   },
   "dependencies": {
-    "@tscmono/config": "0.2.0",
-    "@tscmono/plugin-repo": "0.3.0",
+    "@tscmono/config": "0.2.1",
+    "@tscmono/plugin-repo": "0.3.1",
     "@tscmono/utils": "0.1.23",
     "@types/node": "^14.14.16",
     "clipanion": "^2.6.2",

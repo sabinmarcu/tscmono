@@ -1457,6 +1457,8 @@ export interface Configs {
 export interface Required {
   baseConfig: string;
   mode?: "loose" | "strict";
+  linkFile?: string;
+  defaultFileMode?: "link" | "default";
   [k: string]: unknown;
 }
 export interface Optional {

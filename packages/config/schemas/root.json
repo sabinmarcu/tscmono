@@ -15,6 +15,16 @@
             "loose",
             "strict"
           ]
+        },
+        "linkFile": {
+          "type": "string"
+        },
+        "defaultFileMode": {
+          "type": "string",
+          "enum": [
+            "link",
+            "default"
+          ]
         }
       },
       "required": [

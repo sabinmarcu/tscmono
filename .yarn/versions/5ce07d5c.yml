@@ -1,0 +1,6 @@
+releases:
+  "@tscmono/plugin-workspace": patch
+  "@tscmono/preset-default": patch
+
+declined:
+  - "@tscmono/root"

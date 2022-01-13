@@ -1,0 +1,8 @@
+releases:
+  "@tscmono/cli": minor
+  "@tscmono/config": minor
+  "@tscmono/plugin-repo": minor
+  "@tscmono/plugin-workspace": minor
+  "@tscmono/preset-default": minor
+  "@tscmono/root": patch
+  "@tscmono/utils": minor

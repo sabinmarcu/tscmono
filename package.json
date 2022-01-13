@@ -64,7 +64,6 @@
     "@babel/preset-typescript": "^7.12.7",
     "@commitlint/cli": "^11.0.0",
     "@commitlint/config-conventional": "^11.0.0",
-    "@strictsoftware/typedoc-plugin-monorepo": "patch:@strictsoftware/typedoc-plugin-monorepo@^0.3.1#.yarn/patches/@strictsoftware-typedoc-plugin-monorepo",
     "@types/babel__core": "^7",
     "@types/babel__preset-env": "^7",
     "@types/eslint": "^7",
@@ -93,8 +92,7 @@
     "npm-run-all": "^4.1.5",
     "serve": "^11.3.2",
     "ts-node": "^9.1.1",
-    "typedoc": "^0.17",
-    "typedoc-plugin-jekyll": "^0.1.0",
+    "typedoc": "^0.22.10",
     "typescript": "^4.1.3"
   },
   "dependencies": {
@@ -103,7 +101,8 @@
     "@tscmono/plugin-repo": "workspace:packages/plugin-repo",
     "@tscmono/plugin-workspace": "workspace:packages/plugin-workspace",
     "@tscmono/preset-default": "workspace:packages/preset-default",
-    "@tscmono/utils": "workspace:packages/utils"
+    "@tscmono/utils": "workspace:packages/utils",
+    "typedoc-plugin-missing-exports": "^0.22.6"
   },
   "dependenciesMeta": {
     "@strictsoftware/typedoc-plugin-monorepo@0.3.1": {

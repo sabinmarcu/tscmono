@@ -1,5 +1,4 @@
 {
-  "main": "package.json",
   "publishConfig": {
     "access": "public"
   },
@@ -9,6 +8,8 @@
   },
   "name": "@tscmono/preset-default",
   "version": "0.3.0",
+  "main": "dist/index.js",
+  "typings": "dist/index.d.ts",
   "dependencies": {
     "@tscmono/plugin-repo": "0.3.0",
     "@tscmono/plugin-workspace": "0.3.0"

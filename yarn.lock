@@ -2909,28 +2909,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@strictsoftware/typedoc-plugin-monorepo@^0.3.1":
-  version: 0.3.1
-  resolution: "@strictsoftware/typedoc-plugin-monorepo@npm:0.3.1"
-  dependencies:
-    highlight.js: ^9.15.6
-  peerDependencies:
-    typedoc: ">=0.17.3 <1.0"
-  checksum: 64fe50a901d8b36e218f7b3fce6f92a425d2d1b89ab2f039e6bafcdb1c4051f3ad8b4b2428177f1d6ed990edbec3b4ca869369809b363655e9ed007d4a0e4f83
-  languageName: node
-  linkType: hard
-
-"@strictsoftware/typedoc-plugin-monorepo@patch:@strictsoftware/typedoc-plugin-monorepo@^0.3.1#.yarn/patches/@strictsoftware-typedoc-plugin-monorepo::locator=%40tscmono%2Froot%40workspace%3A.":
-  version: 0.3.1
-  resolution: "@strictsoftware/typedoc-plugin-monorepo@patch:@strictsoftware/typedoc-plugin-monorepo@npm%3A0.3.1#.yarn/patches/@strictsoftware-typedoc-plugin-monorepo::version=0.3.1&hash=a13b46&locator=%40tscmono%2Froot%40workspace%3A."
-  dependencies:
-    highlight.js: ^9.15.6
-  peerDependencies:
-    typedoc: ">=0.17.3 <1.0"
-  checksum: b1cc2da84df59c246b9605bcd391d3d5fa9e4a68ddb3a613ee125a455e2960a8311f303f2ca0f18dbc6e2257fa1cb531371eb8d1b80b1f99dfef4451f98d3d19
-  languageName: node
-  linkType: hard
-
 "@szmarczak/http-timer@npm:^1.1.2":
   version: 1.1.2
   resolution: "@szmarczak/http-timer@npm:1.1.2"
@@ -3036,7 +3014,6 @@ __metadata:
     "@babel/preset-typescript": ^7.12.7
     "@commitlint/cli": ^11.0.0
     "@commitlint/config-conventional": ^11.0.0
-    "@strictsoftware/typedoc-plugin-monorepo": "patch:@strictsoftware/typedoc-plugin-monorepo@^0.3.1#.yarn/patches/@strictsoftware-typedoc-plugin-monorepo"
     "@tscmono/cli": "workspace:packages/cli"
     "@tscmono/config": "workspace:packages/config"
     "@tscmono/plugin-repo": "workspace:packages/plugin-repo"
@@ -3071,8 +3048,8 @@ __metadata:
     npm-run-all: ^4.1.5
     serve: ^11.3.2
     ts-node: ^9.1.1
-    typedoc: ^0.17
-    typedoc-plugin-jekyll: ^0.1.0
+    typedoc: ^0.22.10
+    typedoc-plugin-missing-exports: ^0.22.6
     typescript: ^4.1.3
   dependenciesMeta:
     "@strictsoftware/typedoc-plugin-monorepo@0.3.1":
@@ -11166,7 +11143,7 @@ fsevents@^1.2.7:
   languageName: node
   linkType: hard
 
-"glob@npm:^7.0.0, glob@npm:^7.0.3, glob@npm:^7.0.5, glob@npm:^7.1.1, glob@npm:^7.1.2, glob@npm:^7.1.3, glob@npm:^7.1.4, glob@npm:^7.1.6":
+"glob@npm:^7.0.3, glob@npm:^7.0.5, glob@npm:^7.1.1, glob@npm:^7.1.2, glob@npm:^7.1.3, glob@npm:^7.1.4, glob@npm:^7.1.6":
   version: 7.1.6
   resolution: "glob@npm:7.1.6"
   dependencies:
@@ -11177,6 +11154,20 @@ fsevents@^1.2.7:
     once: ^1.3.0
     path-is-absolute: ^1.0.0
   checksum: 789977b52432865bd63846da5c75a6efc2c56abdc0cb5ffcdb8e91eeb67a58fa5594c1195d18b2b4aff99675b0739ed6bd61024b26562e0cca18c8f993efdc82
+  languageName: node
+  linkType: hard
+
+"glob@npm:^7.2.0":
+  version: 7.2.0
+  resolution: "glob@npm:7.2.0"
+  dependencies:
+    fs.realpath: ^1.0.0
+    inflight: ^1.0.4
+    inherits: 2
+    minimatch: ^3.0.4
+    once: ^1.3.0
+    path-is-absolute: ^1.0.0
+  checksum: 1171c3d7b1f5a367499e498826cddafc642aa55ef21e810031a287d3199612a889059d7d2c276a04c636c3ac2fd5943896bfc309110b21fafaeb8a1e0a199d6e
   languageName: node
   linkType: hard
 
@@ -11559,24 +11550,6 @@ fsevents@^1.2.7:
   languageName: node
   linkType: hard
 
-"handlebars@npm:^4.7.6":
-  version: 4.7.6
-  resolution: "handlebars@npm:4.7.6"
-  dependencies:
-    minimist: ^1.2.5
-    neo-async: ^2.6.0
-    source-map: ^0.6.1
-    uglify-js: ^3.1.4
-    wordwrap: ^1.0.0
-  dependenciesMeta:
-    uglify-js:
-      optional: true
-  bin:
-    handlebars: bin/handlebars
-  checksum: 50276715da3e410f1d485635029b77e09b8c9244d9e49119d5f39ed978a3d44ce94f5d6120efeb707da0ba9dd0cddf140d8d2ac160721d93aa9f4234474ad318
-  languageName: node
-  linkType: hard
-
 "har-schema@npm:^2.0.0":
   version: 2.0.0
   resolution: "har-schema@npm:2.0.0"
@@ -11865,24 +11838,10 @@ fsevents@^1.2.7:
   languageName: node
   linkType: hard
 
-"highlight.js@npm:^10.0.0":
-  version: 10.5.0
-  resolution: "highlight.js@npm:10.5.0"
-  checksum: 00cfa96a725a7fe3f2e4f594303cfb69682414c2e6f1d2e3827bc7c738d8402491fcd5d92db2a3bb210d3d674873298d4a0d05cd78e6fe78a1e8137980a92722
-  languageName: node
-  linkType: hard
-
 "highlight.js@npm:^8.1.0":
   version: 8.9.1
   resolution: "highlight.js@npm:8.9.1"
   checksum: 3656d2348217f7f15dec9ea5a5528db4d5607818840f11e5a15aee7ef7f92732d0312932aef4db0170d8101c7d5880496b8762329a5fe55ad82d374d8979e389
-  languageName: node
-  linkType: hard
-
-"highlight.js@npm:^9.15.6":
-  version: 9.18.5
-  resolution: "highlight.js@npm:9.18.5"
-  checksum: dea74c216cec83604e35cd3187aa9fa7a7da4876d1da6519a7bb1b635566e6525fcb3a3d8f2158a11e930499acee9506c710c5121ce30d328342af2e49fe59da
   languageName: node
   linkType: hard
 
@@ -12541,13 +12500,6 @@ fsevents@^1.2.7:
     has: ^1.0.3
     side-channel: ^1.0.2
   checksum: 02b2bcc612fbbaa5de71acec354a7bb50d8b3b2d2df775b6df61ea41419f92b69e0562f80125d7fa3667c9fb485cc88726f8a181fb544d880c79564f0f7d7d1e
-  languageName: node
-  linkType: hard
-
-"interpret@npm:^1.0.0":
-  version: 1.4.0
-  resolution: "interpret@npm:1.4.0"
-  checksum: f15725d76206525546f559030ddc967db025c6db904eb8798a70ec3c07e42c5537c5cbc73a15eafd4ae5cdabad35601abf8878261c03dcc8217747e8037575fe
   languageName: node
   linkType: hard
 
@@ -14214,6 +14166,13 @@ fsevents@^1.2.7:
   languageName: node
   linkType: hard
 
+"jsonc-parser@npm:^3.0.0":
+  version: 3.0.0
+  resolution: "jsonc-parser@npm:3.0.0"
+  checksum: 36b9080a7e25f5052c7d551109c4ead564f3102d7ca0c5ee4a2f7debc18b2cd31896e0e369cfd1442d9d2d71fc1defaf094ba885bc9b43a6a3f2b3a9083fd2cb
+  languageName: node
+  linkType: hard
+
 "jsonfile@npm:^4.0.0":
   version: 4.0.0
   resolution: "jsonfile@npm:4.0.0"
@@ -14920,7 +14879,7 @@ fsevents@^1.2.7:
   languageName: node
   linkType: hard
 
-"lunr@npm:^2.3.8":
+"lunr@npm:^2.3.9":
   version: 2.3.9
   resolution: "lunr@npm:2.3.9"
   checksum: a2b66320c2f6632322b91c43621eed9e623c0f1b81e7c2d74c238884a02229698baa4478bd238e9b32d7abf0db5ae9233b311c28e1edbcc481774e1ce83bec6f
@@ -15024,12 +14983,12 @@ fsevents@^1.2.7:
   languageName: node
   linkType: hard
 
-"marked@npm:1.0.0":
-  version: 1.0.0
-  resolution: "marked@npm:1.0.0"
+"marked@npm:^3.0.8":
+  version: 3.0.8
+  resolution: "marked@npm:3.0.8"
   bin:
     marked: bin/marked
-  checksum: 4121f2f5cb7130e57571780181cddac9e3a8692486045f760baad14c6d896c9481180ad8ab8a36fb9476375ddaa860dbc7d29ecf386b2bfa47d4450a9f866cd4
+  checksum: a56e571e9a407a39a45045cdc21a1d13e2382c253a4e0014d785bc613f8f8b48cda3aa0a5e47f304e49ae0d5d9bae5bc9e3480594584658a0ea9df854120f000
   languageName: node
   linkType: hard
 
@@ -15477,7 +15436,7 @@ fsevents@^1.2.7:
   languageName: node
   linkType: hard
 
-"minimatch@npm:3.0.4, minimatch@npm:^3.0.0, minimatch@npm:^3.0.3, minimatch@npm:^3.0.4":
+"minimatch@npm:3.0.4, minimatch@npm:^3.0.3, minimatch@npm:^3.0.4":
   version: 3.0.4
   resolution: "minimatch@npm:3.0.4"
   dependencies:
@@ -15799,7 +15758,7 @@ fsevents@^1.2.7:
   languageName: node
   linkType: hard
 
-"neo-async@npm:^2.5.0, neo-async@npm:^2.6.0, neo-async@npm:^2.6.1":
+"neo-async@npm:^2.5.0, neo-async@npm:^2.6.1":
   version: 2.6.2
   resolution: "neo-async@npm:2.6.2"
   checksum: 34a8f5309135be258a97082af810ea43700a3e0121e7b1ea31b3e22e2663d7c0d502cd949abb6d1ab8c11abfd04500ee61721ec5408b2d4bef8105241fd8a4c2
@@ -18684,15 +18643,6 @@ fsevents@^1.2.7:
   languageName: node
   linkType: hard
 
-"rechoir@npm:^0.6.2":
-  version: 0.6.2
-  resolution: "rechoir@npm:0.6.2"
-  dependencies:
-    resolve: ^1.1.6
-  checksum: 6646a6bce733282d182bf04816b15d4e2d63736b3453cf62a8568aaa1399621a73b3942315161f549e090f9a3c61bc09f4cb674f928c369a40037621e10295bd
-  languageName: node
-  linkType: hard
-
 "recursive-readdir@npm:2.2.1":
   version: 2.2.1
   resolution: "recursive-readdir@npm:2.2.1"
@@ -19266,7 +19216,7 @@ fsevents@^1.2.7:
   languageName: node
   linkType: hard
 
-"resolve@^1.1.6, resolve@^1.10.0, resolve@^1.12.0, resolve@^1.13.1, resolve@^1.17.0, resolve@^1.18.1, resolve@^1.3.2":
+"resolve@^1.10.0, resolve@^1.12.0, resolve@^1.13.1, resolve@^1.17.0, resolve@^1.18.1, resolve@^1.3.2":
   version: 1.19.0
   resolution: "resolve@npm:1.19.0"
   dependencies:
@@ -19276,7 +19226,7 @@ fsevents@^1.2.7:
   languageName: node
   linkType: hard
 
-"resolve@patch:resolve@^1.1.6#builtin<compat/resolve>, resolve@patch:resolve@^1.10.0#builtin<compat/resolve>, resolve@patch:resolve@^1.12.0#builtin<compat/resolve>, resolve@patch:resolve@^1.13.1#builtin<compat/resolve>, resolve@patch:resolve@^1.17.0#builtin<compat/resolve>, resolve@patch:resolve@^1.18.1#builtin<compat/resolve>, resolve@patch:resolve@^1.3.2#builtin<compat/resolve>":
+"resolve@patch:resolve@^1.10.0#builtin<compat/resolve>, resolve@patch:resolve@^1.12.0#builtin<compat/resolve>, resolve@patch:resolve@^1.13.1#builtin<compat/resolve>, resolve@patch:resolve@^1.17.0#builtin<compat/resolve>, resolve@patch:resolve@^1.18.1#builtin<compat/resolve>, resolve@patch:resolve@^1.3.2#builtin<compat/resolve>":
   version: 1.19.0
   resolution: "resolve@patch:resolve@npm%3A1.19.0#builtin<compat/resolve>::version=1.19.0&hash=3388aa"
   dependencies:
@@ -19929,23 +19879,21 @@ fsevents@^1.2.7:
   languageName: node
   linkType: hard
 
-"shelljs@npm:^0.8.4":
-  version: 0.8.4
-  resolution: "shelljs@npm:0.8.4"
-  dependencies:
-    glob: ^7.0.0
-    interpret: ^1.0.0
-    rechoir: ^0.6.2
-  bin:
-    shjs: bin/shjs
-  checksum: bdf68e3c2a8a6d191dde3be2800bfcfd688c126344ccaf6cf7024cdaf824d0d3523b8e514cd52264f739cbabd2b0569637dd5a8183377347225af918e03ff5dc
-  languageName: node
-  linkType: hard
-
 "shellwords@npm:^0.1.1":
   version: 0.1.1
   resolution: "shellwords@npm:0.1.1"
   checksum: 3559ff550917ece921d252edf42eb54827540e9676e537137ace236df8f9b78e48c542ae0b3f8876fea0faf5826c97629d5b8cb9ac7dee287260e9804fb8132c
+  languageName: node
+  linkType: hard
+
+"shiki@npm:^0.9.12":
+  version: 0.9.15
+  resolution: "shiki@npm:0.9.15"
+  dependencies:
+    jsonc-parser: ^3.0.0
+    vscode-oniguruma: ^1.6.1
+    vscode-textmate: 5.2.0
+  checksum: fc0cd2e09063880b66c35ce54cad234ea7d91565babe36cc9916ddbb04ed67b144ae34c6fbf2030365532136c9dd69ce520560dacbc6a785860ad2c6073f55de
   languageName: node
   linkType: hard
 
@@ -21918,43 +21866,29 @@ fsevents@^1.2.7:
   languageName: node
   linkType: hard
 
-"typedoc-default-themes@npm:^0.10.2":
-  version: 0.10.2
-  resolution: "typedoc-default-themes@npm:0.10.2"
-  dependencies:
-    lunr: ^2.3.8
-  checksum: 8766471937395067504b3f21edd8c9f89e6901c2912aff0b4371a5dfceea31e4a1f9d08282c2998d0bc0a70e3d6943b3043ebe90e6b11dfdaf52c4a05e32d980
+"typedoc-plugin-missing-exports@npm:^0.22.6":
+  version: 0.22.6
+  resolution: "typedoc-plugin-missing-exports@npm:0.22.6"
+  peerDependencies:
+    typedoc: 0.22.x
+  checksum: c0c794451c12861bed1cb43558ce387c0458fc1913cf8c6d1fe17d1f9015649469580958a03f4b6500a3de150b9e5b072284d2627f659732d2ee811101d38e72
   languageName: node
   linkType: hard
 
-"typedoc-plugin-jekyll@npm:^0.1.0":
-  version: 0.1.0
-  resolution: "typedoc-plugin-jekyll@npm:0.1.0"
-  peerDependencies:
-    typedoc: ^0.17.7
-  checksum: ecacca62e93a143d765de834c940cfb9fdf5566275a587855940cc0d9237d32e8f40d0ab382828a2cd08aefb8e2f67627b5231f696d3f24ea74ef5f1f331d495
-  languageName: node
-  linkType: hard
-
-"typedoc@npm:^0.17":
-  version: 0.17.8
-  resolution: "typedoc@npm:0.17.8"
+"typedoc@npm:^0.22.10":
+  version: 0.22.10
+  resolution: "typedoc@npm:0.22.10"
   dependencies:
-    fs-extra: ^8.1.0
-    handlebars: ^4.7.6
-    highlight.js: ^10.0.0
-    lodash: ^4.17.15
-    lunr: ^2.3.8
-    marked: 1.0.0
-    minimatch: ^3.0.0
-    progress: ^2.0.3
-    shelljs: ^0.8.4
-    typedoc-default-themes: ^0.10.2
+    glob: ^7.2.0
+    lunr: ^2.3.9
+    marked: ^3.0.8
+    minimatch: ^3.0.4
+    shiki: ^0.9.12
   peerDependencies:
-    typescript: ">=3.8.3"
+    typescript: 4.0.x || 4.1.x || 4.2.x || 4.3.x || 4.4.x || 4.5.x
   bin:
     typedoc: bin/typedoc
-  checksum: 5c8d869a85c0fa71b69299ffbcf542278bb0f17672ee2fb23f65f696f5d520e66b0e29634589c71db9f0d4f059f9982ddfb0a29b733755071b1779e98537da1f
+  checksum: dfbace10980ab52a44e9c0186203f0390070a62ea603efaefe3c854630db5ee5f771f3174ad3932a26f585b798d068d11570c55fc2124f94328a3e312c221f19
   languageName: node
   linkType: hard
 
@@ -21975,15 +21909,6 @@ typescript@^4.1.3:
     tsc: bin/tsc
     tsserver: bin/tsserver
   checksum: 017af992148346e671d5b83b041773825888e9c94db8d2b9472cdbb6d6f0ee85927817473121524d319f8be6ffe5a6904d27ff6ef21356d2274fcadd52e17938
-  languageName: node
-  linkType: hard
-
-"uglify-js@npm:^3.1.4":
-  version: 3.12.4
-  resolution: "uglify-js@npm:3.12.4"
-  bin:
-    uglifyjs: bin/uglifyjs
-  checksum: 94d832ab1100f4bc94676cce1971bd66e1e6507cb1a69411a50510f979aa6c7c6ff34aae043fd8f25943ff52584c1d1c3e551dc061d6ac559a4ecc53c64f344f
   languageName: node
   linkType: hard
 
@@ -22789,6 +22714,20 @@ typescript@^4.1.3:
   languageName: node
   linkType: hard
 
+"vscode-oniguruma@npm:^1.6.1":
+  version: 1.6.1
+  resolution: "vscode-oniguruma@npm:1.6.1"
+  checksum: ae73f0b470c620568290ca0dffd49eb28a61d50696b419635f9ed32fb233ee2172af81000cb02bbd2a13dbc41b39c71fb0e874d3089c230c1d71276e932e2d59
+  languageName: node
+  linkType: hard
+
+"vscode-textmate@npm:5.2.0":
+  version: 5.2.0
+  resolution: "vscode-textmate@npm:5.2.0"
+  checksum: 67ec1fed58690b6d21fb75462694ebfeefe93d9a4091dfbea9db4e1b718d172ac2e60e3944a0dd88c53ff50e7604dfcccde19d8a4d25616c0b2df330052df2b9
+  languageName: node
+  linkType: hard
+
 "w3c-hr-time@npm:^1.0.2":
   version: 1.0.2
   resolution: "w3c-hr-time@npm:1.0.2"
@@ -23161,13 +23100,6 @@ typescript@^4.1.3:
   version: 1.2.3
   resolution: "word-wrap@npm:1.2.3"
   checksum: 6526abd75d4409c76d1989cf2fbf6080b903db29824be3d17d0a0b8f6221486c76a021174eda2616cf311199787983c34bae3c5e7b51d2ad7476f2066cddb75a
-  languageName: node
-  linkType: hard
-
-"wordwrap@npm:^1.0.0":
-  version: 1.0.0
-  resolution: "wordwrap@npm:1.0.0"
-  checksum: b4f3f8104a727d1b08e77f43f3692977146f13074392747a3d9cfd631d0fc3ff1c0c034d44fcd7a22183c6505d2fc305421e3512671f8a56f903055671ace4ce
   languageName: node
   linkType: hard
 

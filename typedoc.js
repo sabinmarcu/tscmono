@@ -1,17 +1,15 @@
 module.exports = {
   out: 'docs',
-  inputFiles: 'packages/**/*.ts',
+  entryPointStrategy: 'packages',
+  entryPoints: ['.'],
   exclude: [
     '**/*spec.+(ts|tsx)',
     '**/*.d.ts',
     '**/*.json',
     'packages/website/**/*',
+    'packages/preset-default/**/*',
   ],
-  plugin: [
-    '@strictsoftware/typedoc-plugin-monorepo',
-    'typedoc-plugin-jekyll',
-  ],
-  'external-modulemap': '.*packages/([^/]+)/.*',
+  emit: 'both',
   includeVersion: true,
   name: 'TSCMono',
   tsconfig: './tsconfig.typedoc.json',

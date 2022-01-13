@@ -1,5 +1,7 @@
 import { commandPath, RepoCommand } from './RepoCommand';
 
+export { RepoCommand } from './RepoCommand';
+
 export * from './config';
 export * from './tree';
 

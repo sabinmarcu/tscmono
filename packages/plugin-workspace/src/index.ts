@@ -1,5 +1,7 @@
 import { commandPath, WorkspaceCommand } from './WorkspaceCommand';
 
+export { WorkspaceCommand } from './WorkspaceCommand';
+
 export * from './graph';
 
 /**

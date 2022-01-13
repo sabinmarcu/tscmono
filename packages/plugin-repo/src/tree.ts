@@ -7,6 +7,7 @@ import {
   registerCache,
   root,
   TreeNode,
+  hasPackageJson,
 } from '@tscmono/utils';
 import merge from 'ts-deepmerge';
 
@@ -56,7 +57,7 @@ export const workspaceTree = registerCache(
  */
 type TSConfigTemplate = {
   /**
-   * The path of the file to be writte
+   * The path of the file to be written
    */
   path: string,
   /**
@@ -101,12 +102,18 @@ export const treeNodeToTSConfig = async (
   fileCfg?: [string, TSConfigCustomConfig],
 ): Promise<TSConfigTemplate> => {
   const [fName] = fileCfg || [];
-  const fileName = makeTsConfigFileName(fName);
+  const fileName = makeTsConfigFileName(
+    (tree.isLinkFile && rootConfig.linkFile)
+    || fName
+  );
 
   const isRoot = tree.path === '';
 
   let references: any[];
-  if (!fName && isRoot && !!rootConfig.files) {
+  if (!fName && isRoot && !!rootConfig.files && (
+    rootConfig.defaultFileMode !== 'default'
+    || tree.isLinkFile
+  )) {
     references = Object.keys(rootConfig.files)
       .map((it) => ({
         path: path.resolve(
@@ -122,9 +129,10 @@ export const treeNodeToTSConfig = async (
           const workspaceRelativePath = typeof node === 'string' ? node : node.path;
           const workspacePath = path.resolve(projectPath, workspaceRelativePath);
           const isValid = await validConfig(workspacePath, rootConfig);
+          const withPackageJson = await hasPackageJson(workspacePath);
           return {
             path: workspacePath,
-            valid: isValid,
+            valid: !withPackageJson || isValid,
           };
         },
       ),
@@ -179,6 +187,17 @@ export const reduceTreeNodeToTSConfigList = async (
         },
       ),
     );
+  }
+  const isRoot = tree.path === '';
+  if (isRoot && rootConfig.linkFile) {
+    extraTemplates.push(
+      await treeNodeToTSConfig(
+        projectPath,
+        { isLinkFile: rootConfig.linkFile, path: '', children: {} },
+        tpl,
+        rootConfig,
+      )
+    )
   }
   const childTemplates = (await Promise.all(
     Object.values(tree.children).map(

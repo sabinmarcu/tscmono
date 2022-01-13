@@ -4,6 +4,7 @@ import {
   makeLogger,
   registerCache,
   root,
+  findPackageJson,
 } from '@tscmono/utils';
 
 /**
@@ -50,7 +51,7 @@ export const getPlugins = async (
     presets.map(async (preset) => {
       const presetPath = require.resolve(preset, { paths: [pwd] });
       debug('Loading preset %s from %s', preset, presetPath);
-      const presetPlugins = await getPlugins(presetPath, preset);
+      const presetPlugins = await getPlugins(findPackageJson(presetPath), preset);
       debug('Loading %d plugins of preset %s', presetPlugins.size, preset);
       allPlugins = new Map([...allPlugins, ...presetPlugins]);
     }),

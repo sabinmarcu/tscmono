@@ -3,7 +3,7 @@ import merge from 'ts-deepmerge';
 export type TreeNode = {
   path: string,
   children: Record<string, TreeNode | string>,
-};
+} & { [key: string]: any };
 
 /**
  * Used in generating a tree from a list of paths, becoming the root

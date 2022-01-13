@@ -22,9 +22,6 @@
     },
     {
       "path": "./utils/tsconfig.init.json"
-    },
-    {
-      "path": "./website/tsconfig.init.json"
     }
   ]
 }

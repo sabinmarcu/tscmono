@@ -184,9 +184,6 @@ export const packageToTsConfig = async (
       },
     );
   }
-  if (customConfigs.length) {
-    return customConfigs;
-  }
   return [
     {
       path: tsConfigPath,
@@ -197,6 +194,7 @@ export const packageToTsConfig = async (
         { references },
       ].filter(Boolean)),
     },
+    ...customConfigs,
   ];
 };
 

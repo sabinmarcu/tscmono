@@ -3070,11 +3070,12 @@ __metadata:
     "@types/semver": ^7
     debug: ^4.3.1
     debug-extend: ^0.0.4
-    memfs: ^3.2.0
+    memfs: ^3.4.7
     micromatch: ^4.0.2
     semver: ^7.3.4
     ts-deepmerge: ^1.0.6
     unionfs: ^4.4.0
+    yaml: ^2.1.1
   languageName: unknown
   linkType: soft
 
@@ -10224,10 +10225,17 @@ __metadata:
   languageName: node
   linkType: hard
 
-"fs-monkey@npm:1.0.1, fs-monkey@npm:^1.0.0":
+"fs-monkey@npm:^1.0.0":
   version: 1.0.1
   resolution: "fs-monkey@npm:1.0.1"
   checksum: 2ecb8ef5896fc66a5d6fbb9af6e1f9c5723b46ff46cbd91c815262c405318dad8cb6f1bbb36d9c63ec257131731fbdfa433683bc1fea34b4be17b07e64c826cc
+  languageName: node
+  linkType: hard
+
+"fs-monkey@npm:^1.0.3":
+  version: 1.0.3
+  resolution: "fs-monkey@npm:1.0.3"
+  checksum: 0b5e16f147d3e1b28e2fc7ae8f4a6bf061587a03dbee817ee869fadbb1f5f9e038062bf9646161c7576918ac084bbd0b38bd819aa7856d4fd850a440b201f83e
   languageName: node
   linkType: hard
 
@@ -15130,12 +15138,12 @@ fsevents@^1.2.7:
   languageName: node
   linkType: hard
 
-"memfs@npm:^3.2.0":
-  version: 3.2.0
-  resolution: "memfs@npm:3.2.0"
+"memfs@npm:^3.4.7":
+  version: 3.4.7
+  resolution: "memfs@npm:3.4.7"
   dependencies:
-    fs-monkey: 1.0.1
-  checksum: 48bf758246937c6ceadaecc31e81050d4745dac5e031e3080961c28311bcc4b29e99f9cc4110103a0cb9f004c30c59926eaf15d10f4ac9a00b773b256a918ae2
+    fs-monkey: ^1.0.3
+  checksum: b5eb6df84e9bcfb6501383265e4e5b1e27da70d6d04baa87276ad329edf4528c3ebc20771c18a631f9c7bd679a07434710d72292f97a518279399ba176d87f6d
   languageName: node
   linkType: hard
 
@@ -23523,6 +23531,13 @@ typescript@^4.1.3:
   version: 1.10.0
   resolution: "yaml@npm:1.10.0"
   checksum: d4cc9f9724f8d0aebc2cf52e4e6aa7059f12d50deb54b5225d103462fb2af36e5c0bb419101ca4b1f0cd3b4db9e4139cf2c690e863ac6227648d39d6f4e2522c
+  languageName: node
+  linkType: hard
+
+"yaml@npm:^2.1.1":
+  version: 2.1.1
+  resolution: "yaml@npm:2.1.1"
+  checksum: 44d84b45ac19dc0c49fe9adda511867dd113ece0f57d35febbb5d517de1a9f03a3ff3df6bb019b10cbe188d7be8ea3021cbc0ef578fe21d9c4e5cdf1c7a85317
   languageName: node
   linkType: hard
 

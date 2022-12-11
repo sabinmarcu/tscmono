@@ -2969,7 +2969,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@tscmono/plugin-repo@0.4.1, @tscmono/plugin-repo@workspace:packages/plugin-repo":
+"@tscmono/plugin-repo@0.4.2, @tscmono/plugin-repo@workspace:packages/plugin-repo":
   version: 0.0.0-use.local
   resolution: "@tscmono/plugin-repo@workspace:packages/plugin-repo"
   dependencies:
@@ -2982,12 +2982,12 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@tscmono/plugin-workspace@0.4.3, @tscmono/plugin-workspace@workspace:packages/plugin-workspace":
+"@tscmono/plugin-workspace@0.4.4, @tscmono/plugin-workspace@workspace:packages/plugin-workspace":
   version: 0.0.0-use.local
   resolution: "@tscmono/plugin-workspace@workspace:packages/plugin-workspace"
   dependencies:
     "@tscmono/config": 0.3.1
-    "@tscmono/plugin-repo": 0.4.1
+    "@tscmono/plugin-repo": 0.4.2
     "@tscmono/utils": 0.2.1
     "@types/node": ^14.14.16
     clipanion: ^2.6.2
@@ -3000,8 +3000,8 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@tscmono/preset-default@workspace:packages/preset-default"
   dependencies:
-    "@tscmono/plugin-repo": 0.4.1
-    "@tscmono/plugin-workspace": 0.4.3
+    "@tscmono/plugin-repo": 0.4.2
+    "@tscmono/plugin-workspace": 0.4.4
   languageName: unknown
   linkType: soft
 

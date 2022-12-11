@@ -104,7 +104,7 @@ export const treeNodeToTSConfig = async (
   const [fName] = fileCfg || [];
   const fileName = makeTsConfigFileName(
     (tree.isLinkFile && rootConfig.linkFile)
-    || fName
+    || fName,
   );
 
   const isRoot = tree.path === '';
@@ -188,16 +188,15 @@ export const reduceTreeNodeToTSConfigList = async (
       ),
     );
   }
-  const isRoot = tree.path === '';
-  if (isRoot && rootConfig.linkFile) {
+  if (rootConfig.linkFile) {
     extraTemplates.push(
       await treeNodeToTSConfig(
         projectPath,
-        { isLinkFile: rootConfig.linkFile, path: '', children: {} },
+        merge(tree, { isLinkFile: true }),
         tpl,
         rootConfig,
-      )
-    )
+      ),
+    );
   }
   const childTemplates = (await Promise.all(
     Object.values(tree.children).map(

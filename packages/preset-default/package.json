@@ -12,7 +12,7 @@
   "typings": "dist/index.d.ts",
   "dependencies": {
     "@tscmono/plugin-repo": "0.4.1",
-    "@tscmono/plugin-workspace": "0.4.2"
+    "@tscmono/plugin-workspace": "0.4.3"
   },
   "tscmono": {
     "preset": "default"

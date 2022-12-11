@@ -2982,7 +2982,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@tscmono/plugin-workspace@0.4.2, @tscmono/plugin-workspace@workspace:packages/plugin-workspace":
+"@tscmono/plugin-workspace@0.4.3, @tscmono/plugin-workspace@workspace:packages/plugin-workspace":
   version: 0.0.0-use.local
   resolution: "@tscmono/plugin-workspace@workspace:packages/plugin-workspace"
   dependencies:
@@ -3001,7 +3001,7 @@ __metadata:
   resolution: "@tscmono/preset-default@workspace:packages/preset-default"
   dependencies:
     "@tscmono/plugin-repo": 0.4.1
-    "@tscmono/plugin-workspace": 0.4.2
+    "@tscmono/plugin-workspace": 0.4.3
   languageName: unknown
   linkType: soft
 

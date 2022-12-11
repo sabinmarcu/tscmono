@@ -156,8 +156,9 @@ export const packageToTsConfig = async (
         path.resolve(pkgPath, location, 'tsconfig.json'),
       ),
     }));
+  let configFiles: string[] = [];
   if (rootConfig.files) {
-    Object.entries(rootConfig.files).forEach(
+    configFiles = Object.entries(rootConfig.files).map(
       ([file, c]) => {
         const config = resolveTsConfig(rootConfig, c);
         let extra;
@@ -202,8 +203,32 @@ export const packageToTsConfig = async (
             { references: localReferences, compilerOptions: { paths: localPaths } },
           ].filter(Boolean)),
         });
+        return p;
       },
     );
+  }
+  if (rootConfig.linkFile) {
+    const { path: p } = getConfigExtras(
+      rootDir,
+      rootConfig,
+      pkgPath,
+      rootConfig.linkFile,
+    );
+    const localReferences = configFiles.map(
+      (location) => ({
+        path: path.relative(
+          pkgPath,
+          location,
+        ),
+      }),
+    );
+    customConfigs.push({
+      path: p,
+      content: merge(...[
+        tpl,
+        { references: localReferences },
+      ]),
+    });
   }
   return [
     {

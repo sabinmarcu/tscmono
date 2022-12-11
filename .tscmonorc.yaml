@@ -2,7 +2,7 @@
 baseConfig: ./tsconfig.base.json
 mode: loose
 defaultFileMode: default
-# linkFile: link
+linkFile: link
 presets: 
   default: 
     compilerOptions: 
@@ -37,12 +37,12 @@ presets:
       emitDeclarationOnly: true
 
 
-# files:
-#   esm: 
-#     preset: esm
-#   common: 
-#     preset: common
-#   type: 
-#     preset: type
-#   default:
-#     preset: default
+files:
+  esm: 
+    preset: esm
+  common: 
+    preset: common
+  type: 
+    preset: type
+  default:
+    preset: default

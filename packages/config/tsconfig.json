@@ -5,7 +5,12 @@
     "rootDir": "src",
     "outDir": "dist",
     "incremental": true,
-    "tsBuildInfoFile": "dist/.tsbuildinfo"
+    "tsBuildInfoFile": "dist/.tsbuildinfo",
+    "paths": {
+      "@tscmono/utils": [
+        "../utils"
+      ]
+    }
   },
   "include": [
     "src",

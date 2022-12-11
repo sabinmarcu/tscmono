@@ -172,24 +172,12 @@ export const packageToTsConfig = async (
           pkgPath,
           file,
         );
-        const localPaths = Object.fromEntries(
-          Object.entries(paths).map(([name, [rp]]) => {
-            const rpa = rp.split('/');
-            const fn = p.split('/').slice(-1)[0];
-            rpa.splice(-1, 1, fn);
-            return [
-              name,
-              [rpa.join('/')],
-            ];
-          }),
-        );
-        const localReferences = Object.entries(localPaths)
-          .map(([,[location]]) => ({
-            path: path.relative(
-              pkgPath,
-              path.resolve(pkgPath, location, 'tsconfig.json'),
-            ),
-          }));
+        const localReferences = Object.values(references).map(({ path: rp }) => {
+          const rpa = rp.split('/');
+          const fn = p.split('/').slice(-1)[0];
+          rpa.splice(-1, 1, fn);
+          return { path: rpa.join('/') };
+        });
         customConfigs.push({
           path: p,
           content: merge(...[
@@ -200,7 +188,7 @@ export const packageToTsConfig = async (
             { extends: tsConfigPath },
             confExtra,
             config,
-            { references: localReferences, compilerOptions: { paths: localPaths } },
+            { references: localReferences, compilerOptions: { paths } },
           ].filter(Boolean)),
         });
         return p;
@@ -216,10 +204,10 @@ export const packageToTsConfig = async (
     );
     const localReferences = configFiles.map(
       (location) => ({
-        path: path.relative(
+        path: `./${path.relative(
           pkgPath,
           location,
-        ),
+        )}`,
       }),
     );
     customConfigs.push({

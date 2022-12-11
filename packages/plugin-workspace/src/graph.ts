@@ -137,12 +137,23 @@ export const packageToTsConfig = async (
   );
   const customConfigs: any[] = [];
   const extendedConf = resolveTsConfig(rootConfig, conf! as TSConfigCustomConfig);
-  const references = pkg.workspaceDependencies
-    .map((it) => path.resolve(rootDir, pkgList[it].location))
-    .map((location) => ({
+  const paths = Object.fromEntries(
+    pkg.workspaceDependencies
+      .map((it) => [
+        it,
+        [
+          path.relative(
+            pkgPath,
+            path.resolve(rootDir, pkgList[it].location),
+          ),
+        ],
+      ]),
+  );
+  const references = Object.entries(paths)
+    .map(([,[location]]) => ({
       path: path.relative(
         pkgPath,
-        path.resolve(location, 'tsconfig.json'),
+        path.resolve(pkgPath, location, 'tsconfig.json'),
       ),
     }));
   if (rootConfig.files) {
@@ -160,14 +171,24 @@ export const packageToTsConfig = async (
           pkgPath,
           file,
         );
-        const localReferences = references.map(({ path: rp }) => {
-          const rpa = rp.split('/');
-          const fn = p.split('/').slice(-1)[0];
-          rpa.splice(-1, 1, fn);
-          return {
-            path: rpa.join('/'),
-          };
-        });
+        const localPaths = Object.fromEntries(
+          Object.entries(paths).map(([name, [rp]]) => {
+            const rpa = rp.split('/');
+            const fn = p.split('/').slice(-1)[0];
+            rpa.splice(-1, 1, fn);
+            return [
+              name,
+              [rpa.join('/')],
+            ];
+          }),
+        );
+        const localReferences = Object.entries(localPaths)
+          .map(([,[location]]) => ({
+            path: path.relative(
+              pkgPath,
+              path.resolve(pkgPath, location, 'tsconfig.json'),
+            ),
+          }));
         customConfigs.push({
           path: p,
           content: merge(...[
@@ -178,7 +199,7 @@ export const packageToTsConfig = async (
             { extends: tsConfigPath },
             confExtra,
             config,
-            { references: localReferences },
+            { references: localReferences, compilerOptions: { paths: localPaths } },
           ].filter(Boolean)),
         });
       },
@@ -191,7 +212,7 @@ export const packageToTsConfig = async (
         rootExtra,
         tpl,
         extendedConf,
-        { references },
+        { references, compilerOptions: { paths } },
       ].filter(Boolean)),
     },
     ...customConfigs,

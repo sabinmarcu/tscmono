@@ -16,7 +16,7 @@ import { WorkspaceRootConfig, TSConfigCustomConfig } from '@tscmono/config/schem
 import { WorkspaceConfig as WSConfig } from '@tscmono/config/schemas-types/workspace';
 import { WorkspaceConfig } from '@tscmono/utils/src/types/WorkspaceConfig';
 
-// @ts-ignore
+import linkTemplate from '@tscmono/plugin-repo/dist/template.json';
 import template from './template.json';
 
 /**
@@ -114,6 +114,7 @@ export const packageToTsConfig = async (
   rootConfig: WorkspaceRootConfig,
   rootDir: string,
   tpl: any,
+  linkTpl: any,
   pkgList: Record<string, WorkspaceConfig>,
 ): Promise<TSConfigTemplate[]> => {
   const pkgPath = path.resolve(
@@ -213,7 +214,7 @@ export const packageToTsConfig = async (
     customConfigs.push({
       path: p,
       content: merge(...[
-        tpl,
+        linkTpl,
         { references: localReferences },
       ]),
     });
@@ -257,6 +258,7 @@ export const generateTsConfigs = async (
         rootConfig,
         workspaceRoot,
         template,
+        linkTemplate,
         packages,
       ),
     ),

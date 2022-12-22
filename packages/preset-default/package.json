@@ -7,12 +7,12 @@
     "name": "Sabin Marcu"
   },
   "name": "@tscmono/preset-default",
-  "version": "0.4.3",
+  "version": "0.4.4",
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
   "dependencies": {
-    "@tscmono/plugin-repo": "0.4.2",
-    "@tscmono/plugin-workspace": "0.4.4"
+    "@tscmono/plugin-repo": "0.4.3",
+    "@tscmono/plugin-workspace": "0.4.5"
   },
   "tscmono": {
     "preset": "default"

@@ -109,9 +109,9 @@ export type JSONSchemaForTheTypeScriptCompilerSConfigurationFile = {
           | "ES2020"
           | "ESNext"
           | "None"
-          | "es2022"
-          | "node12"
-          | "nodenext"
+          | "ES2022"
+          | "Node16"
+          | "NodeNext"
         )
       | {
           [k: string]: unknown;
@@ -122,7 +122,7 @@ export type JSONSchemaForTheTypeScriptCompilerSConfigurationFile = {
      * Specify how TypeScript looks up a file from a given module specifier.
      */
     moduleResolution?: (
-      | ("Classic" | "Node")
+      | ("Classic" | "Node" | "Node16" | "NodeNext")
       | {
           [k: string]: unknown;
         }
@@ -250,7 +250,20 @@ export type JSONSchemaForTheTypeScriptCompilerSConfigurationFile = {
      * Set the JavaScript language version for emitted JavaScript and include compatible library declarations.
      */
     target?: (
-      | ("ES3" | "ES5" | "ES6" | "ES2015" | "ES2016" | "ES2017" | "ES2018" | "ES2019" | "ES2020" | "ES2021" | "ESNext")
+      | (
+          | "ES3"
+          | "ES5"
+          | "ES6"
+          | "ES2015"
+          | "ES2016"
+          | "ES2017"
+          | "ES2018"
+          | "ES2019"
+          | "ES2020"
+          | "ES2021"
+          | "ES2022"
+          | "ESNext"
+        )
       | {
           [k: string]: unknown;
         }
@@ -422,6 +435,7 @@ export type JSONSchemaForTheTypeScriptCompilerSConfigurationFile = {
           | "ES2018.Regexp"
           | "ES2019"
           | "ES2019.Array"
+          | "ES2019.Intl"
           | "ES2019.Object"
           | "ES2019.String"
           | "ES2019.Symbol"
@@ -453,7 +467,16 @@ export type JSONSchemaForTheTypeScriptCompilerSConfigurationFile = {
           | "ES2021.WeakRef"
           | "ESNext.WeakRef"
           | "es2021.intl"
+          | "ES2022"
+          | "ES2022.Array"
+          | "ES2022.Error"
+          | "ES2022.Intl"
+          | "ES2022.Object"
+          | "ES2022.String"
         )
+      | {
+          [k: string]: unknown;
+        }
       | {
           [k: string]: unknown;
         }
@@ -492,6 +515,10 @@ export type JSONSchemaForTheTypeScriptCompilerSConfigurationFile = {
         }
     ) &
       string)[];
+    /**
+     * Specify how TypeScript determine a file as module.
+     */
+    moduleDetection?: "auto" | "legacy" | "force";
     /**
      * When type checking, take into account `null` and `undefined`.
      */
@@ -797,9 +824,9 @@ export type JSONSchemaForTheTypeScriptCompilerSConfigurationFile = {
             | "ES2020"
             | "ESNext"
             | "None"
-            | "es2022"
-            | "node12"
-            | "nodenext"
+            | "ES2022"
+            | "Node16"
+            | "NodeNext"
           )
         | {
             [k: string]: unknown;
@@ -810,7 +837,7 @@ export type JSONSchemaForTheTypeScriptCompilerSConfigurationFile = {
        * Specify how TypeScript looks up a file from a given module specifier.
        */
       moduleResolution?: (
-        | ("Classic" | "Node")
+        | ("Classic" | "Node" | "Node16" | "NodeNext")
         | {
             [k: string]: unknown;
           }
@@ -949,6 +976,7 @@ export type JSONSchemaForTheTypeScriptCompilerSConfigurationFile = {
             | "ES2019"
             | "ES2020"
             | "ES2021"
+            | "ES2022"
             | "ESNext"
           )
         | {
@@ -1122,6 +1150,7 @@ export type JSONSchemaForTheTypeScriptCompilerSConfigurationFile = {
             | "ES2018.Regexp"
             | "ES2019"
             | "ES2019.Array"
+            | "ES2019.Intl"
             | "ES2019.Object"
             | "ES2019.String"
             | "ES2019.Symbol"
@@ -1153,7 +1182,16 @@ export type JSONSchemaForTheTypeScriptCompilerSConfigurationFile = {
             | "ES2021.WeakRef"
             | "ESNext.WeakRef"
             | "es2021.intl"
+            | "ES2022"
+            | "ES2022.Array"
+            | "ES2022.Error"
+            | "ES2022.Intl"
+            | "ES2022.Object"
+            | "ES2022.String"
           )
+        | {
+            [k: string]: unknown;
+          }
         | {
             [k: string]: unknown;
           }
@@ -1192,6 +1230,10 @@ export type JSONSchemaForTheTypeScriptCompilerSConfigurationFile = {
           }
       ) &
         string)[];
+      /**
+       * Specify how TypeScript determine a file as module.
+       */
+      moduleDetection?: "auto" | "legacy" | "force";
       /**
        * When type checking, take into account `null` and `undefined`.
        */
@@ -1287,6 +1329,12 @@ export type JSONSchemaForTheTypeScriptCompilerSConfigurationFile = {
      */
     emit?: boolean;
     /**
+     * Enable native ESM support.
+     *
+     * For details, see https://typestrong.org/ts-node/docs/imports#native-ecmascript-modules
+     */
+    esm?: boolean;
+    /**
      * Allows the usage of top level await in REPL.
      *
      * Uses node's implementation which accomplishes this with an AST syntax transformation.
@@ -1297,6 +1345,20 @@ export type JSONSchemaForTheTypeScriptCompilerSConfigurationFile = {
      * to get default, automatic behavior.
      */
     experimentalReplAwait?: boolean;
+    /**
+     * Enable experimental features that re-map imports and require calls to support:
+     * `baseUrl`, `paths`, `rootDirs`, `.js` to `.ts` file extension mappings,
+     * `outDir` to `rootDir` mappings for composite projects and monorepos.
+     *
+     * For details, see https://github.com/TypeStrong/ts-node/issues/1514
+     */
+    experimentalResolver?: boolean;
+    /**
+     * Like node's `--experimental-specifier-resolution`, , but can also be set in your `tsconfig.json` for convenience.
+     *
+     * For details, see https://nodejs.org/dist/latest-v18.x/docs/api/esm.html#customizing-esm-specifier-resolution-algorithm
+     */
+    experimentalSpecifierResolution?: "explicit" | "node";
     /**
      * Load "files" and "include" from `tsconfig.json` on startup.
      *
@@ -1323,8 +1385,9 @@ export type JSONSchemaForTheTypeScriptCompilerSConfigurationFile = {
     logError?: boolean;
     /**
      * Override certain paths to be compiled and executed as CommonJS or ECMAScript modules.
-     * When overridden, the tsconfig "module" and package.json "type" fields are overridden.
-     * This is useful because TypeScript files cannot use the .cjs nor .mjs file extensions;
+     * When overridden, the tsconfig "module" and package.json "type" fields are overridden, and
+     * the file extension is ignored.
+     * This is useful if you cannot use .mts, .cts, .mjs, or .cjs file extensions;
      * it achieves the same effect.
      *
      * Each key is a glob pattern following the same rules as tsconfig's "include" array.
@@ -1367,6 +1430,14 @@ export type JSONSchemaForTheTypeScriptCompilerSConfigurationFile = {
      */
     skipIgnore?: boolean;
     /**
+     * Transpile with swc instead of the TypeScript compiler, and skip typechecking.
+     *
+     * Equivalent to setting both `transpileOnly: true` and `transpiler: 'ts-node/transpilers/swc'`
+     *
+     * For complete instructions: https://typestrong.org/ts-node/docs/transpilers
+     */
+    swc?: boolean;
+    /**
      * Use TypeScript's faster `transpileModule`.
      */
     transpileOnly?: boolean;
@@ -1378,13 +1449,7 @@ export type JSONSchemaForTheTypeScriptCompilerSConfigurationFile = {
           string,
           {
             [k: string]: unknown;
-          },
-          ...(
-            | string
-            | {
-                [k: string]: unknown;
-              }
-          )[]
+          }
         ]
       | string;
     /**

@@ -138,7 +138,7 @@ export const packageToTsConfig = async (
   );
   const customConfigs: any[] = [];
   const extendedConf = resolveTsConfig(rootConfig, conf! as TSConfigCustomConfig);
-  const paths = Object.fromEntries(
+  const dependenciesPaths = Object.fromEntries(
     pkg.workspaceDependencies
       .map((it) => [
         it,
@@ -150,7 +150,20 @@ export const packageToTsConfig = async (
         ],
       ]),
   );
-  const references = Object.entries(paths)
+  const paths = rootConfig.generatePaths
+    ? Object.fromEntries(
+      Object.entries(dependenciesPaths)
+        .flatMap(([it, [location]]) => [
+          [
+            it,
+            [path.join(location, 'src/index.ts')]],
+          [
+            path.join(it, '*'),
+            [path.join(location, 'src/*')]],
+        ]),
+    )
+    : {};
+  const references = Object.entries(dependenciesPaths)
     .map(([,[location]]) => ({
       path: path.relative(
         pkgPath,

@@ -8,7 +8,10 @@
     "tsBuildInfoFile": "dist/.tsbuildinfo",
     "paths": {
       "@tscmono/utils": [
-        "../utils"
+        "../utils/src/index.ts"
+      ],
+      "@tscmono/utils/*": [
+        "../utils/src/*"
       ]
     }
   },

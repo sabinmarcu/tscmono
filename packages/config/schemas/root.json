@@ -19,6 +19,9 @@
         "linkFile": {
           "type": "string"
         },
+        "generatePaths": {
+          "type": "boolean"
+        },
         "defaultFileMode": {
           "type": "string",
           "enum": [

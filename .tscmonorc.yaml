@@ -3,6 +3,7 @@ baseConfig: ./tsconfig.base.json
 mode: loose
 defaultFileMode: default
 linkFile: link
+generatePaths: true
 presets: 
   default: 
     compilerOptions: 

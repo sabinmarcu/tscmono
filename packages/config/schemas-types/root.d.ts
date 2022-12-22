@@ -1523,6 +1523,7 @@ export interface Required {
   baseConfig: string;
   mode?: "loose" | "strict";
   linkFile?: string;
+  generatePaths?: boolean;
   defaultFileMode?: "link" | "default";
   [k: string]: unknown;
 }

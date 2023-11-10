@@ -23,6 +23,7 @@ const parsers: Record<number, WorkspaceParser> = {
   1: V1Parser,
   2: V2Parser,
   3: V2Parser,
+  4: V2Parser,
 };
 
 /**

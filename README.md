@@ -11,3 +11,18 @@
 [![](https://img.shields.io/github/license/sabinmarcu/tscmono)]() 
 [![](https://img.shields.io/github/languages/count/sabinmarcu/tscmono)]()
 [![](https://img.shields.io/badge/developed%20with-Yarn%202-blue)](https://github.com/yarnpkg/berry)
+
+## Release helpers
+
+`g:semver` prints the invoking workspace's `name@version` as a single line:
+
+```sh
+yarn workspace @tscmono/plugin-repo g:semver
+```
+
+Yarn initializes `INIT_CWD` from the invocation directory; use `yarn workspace`
+or run the command inside the package instead of overriding `INIT_CWD` manually.
+
+`yarn publish-nightly:tag` and `yarn publish:tag` update the `nightly` and `latest`
+registry tags, respectively, for each publishable workspace. These commands
+modify registry tags; they are not dry runs.

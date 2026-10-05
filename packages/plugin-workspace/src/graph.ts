@@ -186,12 +186,10 @@ export const packageToTsConfig = async (
           pkgPath,
           file,
         );
-        const localReferences = Object.values(references).map(({ path: rp }) => {
-          const rpa = rp.split('/');
-          const fn = p.split('/').slice(-1)[0];
-          rpa.splice(-1, 1, fn);
-          return { path: rpa.join('/') };
-        });
+        const fileName = path.basename(p);
+        const localReferences = references.map(({ path: rp }) => ({
+          path: path.join(path.dirname(rp), fileName),
+        }));
         customConfigs.push({
           path: p,
           content: merge(...[
